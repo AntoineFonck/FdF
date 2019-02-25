@@ -6,10 +6,16 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 13:16:29 by afonck            #+#    #+#             */
-/*   Updated: 2019/02/25 14:00:45 by afonck           ###   ########.fr       */
+/*   Updated: 2019/02/25 17:42:37 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+char	**check_and_read(char *arg)
+{
+	char *line;
 
+	fd = open(arg, O_RDONLY);
+	while (get_next_line(fd, &line) > 0)
+}
