@@ -25,7 +25,7 @@ typedef struct	s_img
 	int	size_l;
 	int	bpp;
 	int	endian;
-}		t_img
+}		t_img;
 
 typedef struct	s_mlx
 {

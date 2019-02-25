@@ -14,28 +14,32 @@
 #include "mlx.h"
 #include <stdlib.h>
 
-int		deal_key(int key, t_coor *lol)
-{
-	mlx_pixel_put(lol->mlx_ptr, lol->win_ptr, lol->x, lol->y, 0xFFFFFF);
-	lol->x++;
-	lol->y++;
-	return (0);
-}
-
 int		main()
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_coor	*lol;
+	t_mlx	mlx;
+	int	count_w;
+	int	count_h;
 
-	if ((lol = malloc(sizeof(lol))) == NULL)
-		return (1);
-	lol->x = 0;
-	lol->y = 0;
-	lol->mlx_ptr = mlx_init();
-	lol->win_ptr = mlx_new_window(lol->mlx_ptr, 500, 500, "mlx 42");
-	mlx_pixel_put(lol->mlx_ptr, lol->win_ptr, 250, 250, 0xFFFFFF);
-	mlx_key_hook(lol->win_ptr, deal_key, lol);
-	mlx_loop(lol->mlx_ptr);
+	count_h = 0;
+	mlx.mlx_ptr = mlx_init();
+	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "Just To Try");
+	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l, &mlx.img.endian);
+
+	while (count_h < WIN_HEIGHT)
+	{
+		count_w = 0;
+		while (count_w < WIN_WIDTH)
+		{
+			if (count_w % 2)
+				mlx.img.data[count_h * WIN_WIDTH + count_w] = 0xFFFFFF;
+			else
+				mlx.img.data[count_h * WIN_WIDTH + count_w] = 0xFF0000;
+			count_w++;
+		}
+		count_h++;
+	}
+	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img.img_ptr, 0, 0);
+	mlx_loop(mlx.mlx_ptr);
 	return (0);
 }
