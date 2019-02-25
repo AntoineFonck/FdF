@@ -6,12 +6,11 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 12:30:57 by afonck            #+#    #+#             */
-/*   Updated: 2019/02/25 16:53:48 by afonck           ###   ########.fr       */
+/*   Updated: 2019/02/25 17:10:05 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdlib.h>
 
 void	save_line(int x1, int y1, int x2, int y2, int *data)
 {
@@ -65,7 +64,7 @@ int		main()
 		count_h++;
 	}
 	*/
-	save_line(0, 0, 40, 40, mlx.img.data);
+	save_line(0, 0, 40, 90, mlx.img.data);
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img.img_ptr, 0, 0);
 	mlx_loop(mlx.mlx_ptr);
 	return (0);
