@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/02/25 13:07:59 by afonck           ###   ########.fr       */
+/*   Updated: 2019/02/26 15:03:44 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,9 @@ typedef struct	s_mlx
 	void	*win_ptr;
 	t_img	img;
 }		t_mlx;
+
+char			**check_and_read(char *arg);
+
+int				count_nb_lines(char *arg);
 
 #endif
