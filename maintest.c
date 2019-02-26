@@ -25,7 +25,5 @@ int main(int argc, char **argv)
 		i++;
 	}
 	ft_memdel((void **)tab);
-	while (1)
-	{}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 13:16:29 by afonck            #+#    #+#             */
-/*   Updated: 2019/02/26 15:16:26 by afonck           ###   ########.fr       */
+/*   Updated: 2019/02/26 16:53:45 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,21 @@ char	**check_and_read(char *arg)
 	if ((close(fd)) == -1)
 		return (NULL);
 	return (tab);
+}
+
+int		**atoi_tab(char **tab, int size)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (tab[i][j])
+		{
+			j++;
+		}
+		i++;
+	}
 }
