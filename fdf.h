@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/02/27 12:08:39 by afonck           ###   ########.fr       */
+/*   Updated: 2019/02/27 13:12:31 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,12 @@ typedef struct	s_mlx
 	t_img		img;
 }				t_mlx;
 
-char			**check_and_read(char *arg);
+char			**check_and_read(char *arg, t_map *map);
 
-int				count_nb_lines(char *arg);
+void			count_nb_lines(char *arg, t_map *map);
+
+void			atoi_tab(char **tabchar, t_map *map);
+
+int				countwords(char *s, char c);
 
 #endif

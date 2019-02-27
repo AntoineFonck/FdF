@@ -3,27 +3,38 @@
 
 int main(int argc, char **argv)
 {
-	char **tab;
+	t_map *map;
+	char **tabchar;
 	int i;
 	int j;
 
+	if ((map = malloc(sizeof(t_map))) == NULL)
+		return (1);
 	i = 0;
 	if (argc != 2)
 		return (1);
-	j = count_nb_lines(argv[1]);
-	tab = check_and_read(argv[1]);
-	while (i < j)
+	tabchar = check_and_read(argv[1], map);
+	printf("check and read works\n");
+	atoi_tab(tabchar, map);
+	printf("atoi tab works\n");
+	while (i < map->h_max)
 	{
-		write(1, tab[i], ft_strlen(tab[i]));
+		while (j < map->w_max)
+		{
+			printf("printing tab[%d][%d]", i, j);
+			ft_putnbr(map->tab[i][j]);
+			j++;
+		}
 		write(1, "\n", 1);
+		j = 0;
 		i++;
 	}
 	i = 0;
-	while (i < j)
+	while (i < map->h_max)
 	{
-		ft_memdel((void **)&tab[i]);
+		ft_memdel((void **)&tabchar[i]);
 		i++;
 	}
-	ft_memdel((void **)tab);
+	ft_memdel((void **)tabchar);
 	return (0);
 }

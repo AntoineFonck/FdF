@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 13:16:29 by afonck            #+#    #+#             */
-/*   Updated: 2019/02/27 12:24:14 by afonck           ###   ########.fr       */
+/*   Updated: 2019/02/27 13:46:30 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	count_nb_lines(char *arg, t_map *map)
 	int fd;
 
 	if ((fd = open(arg, O_RDONLY)) == -1)
-		return (-1);
+		return ;
 	nblines = 0;
 	i = 0;
 	while (get_next_line(fd, &line) > 0)
@@ -30,7 +30,7 @@ void	count_nb_lines(char *arg, t_map *map)
 	}
 	ft_memdel((void **)&line);
 	if ((close(fd)) == -1)
-		return (-1);
+		return ;
 	map->h_max = nblines;
 }
 
@@ -59,19 +59,24 @@ char	**check_and_read(char *arg, t_map *map)
 	return (tab);
 }
 
-void	**atoi_tab(char **tabchar, t_map *map)
+void	atoi_tab(char **tabchar, t_map *map)
 {
 	int i;
 	int j;
 	char **tmp;
+	int temp;
 
-	if ((map->tab = (int **)malloc(sizeof(map->(*tab)) * map->h_max)) == NULL)
-		return (NULL);
+	map->w_max = 0;
+	if ((map->tab = (int **)malloc(sizeof(int*) * map->h_max)) == NULL)
+		return ;
 	i = 0;
 	while (i < map->h_max)
 	{
-		if ((map->tab[i] = (int *)malloc(sizeof(map->(**tab)) * (countwords(tabchar[i], ' ')))) == NULL)
-			return (NULL);
+		temp = countwords(tabchar[i], ' ');
+		if (temp > map->w_max)
+			map->w_max = temp;
+		if ((map->tab[i] = (int *)malloc(sizeof(int) * (temp))) == NULL)
+			return ;
 		tmp = ft_strsplit(tabchar[i], ' ');
 		while (j < (countwords(tabchar[i], ' ')))
 		{
