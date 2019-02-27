@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/02/27 11:39:11 by afonck           ###   ########.fr       */
+/*   Updated: 2019/02/27 12:08:39 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 # include <math.h>
 # define WIN_WIDTH 500
 # define WIN_HEIGHT 500
+
+typedef struct	s_map
+{
+	int			**tab;
+	int			h_max;
+	int			w_max;
+}				t_map;
 
 typedef struct	s_img
 {
