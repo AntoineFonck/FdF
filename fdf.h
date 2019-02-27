@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/02/26 15:03:44 by afonck           ###   ########.fr       */
+/*   Updated: 2019/02/27 11:39:11 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@
 
 typedef struct	s_img
 {
-	void	*img_ptr;
-	int	*data;
-	int	size_l;
-	int	bpp;
-	int	endian;
-}		t_img;
+	void		*img_ptr;
+	int			*data;
+	int			size_l;
+	int			bpp;
+	int			endian;
+}				t_img;
 
 typedef struct	s_mlx
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img;
-}		t_mlx;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_img		img;
+}				t_mlx;
 
 char			**check_and_read(char *arg);
 

@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 13:16:29 by afonck            #+#    #+#             */
-/*   Updated: 2019/02/26 16:53:45 by afonck           ###   ########.fr       */
+/*   Updated: 2019/02/27 11:51:22 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,44 @@ char	**check_and_read(char *arg)
 	return (tab);
 }
 
-int		**atoi_tab(char **tab, int size)
+int		**atoi_tab(char **tabchar, int size)
 {
 	int i;
 	int j;
+	int **tabint;
 
+	if ((tabint = (int **)malloc(sizeof(*tabint) * size)) == NULL)
+		return (NULL);
 	i = 0;
 	while (i < size)
 	{
+		if ((tabint[i] = (int *)malloc(sizeof(**tabint) * (countwords(tabchar[i], ' ')))) == NULL)
+			return (NULL);
 		j = 0;
-		while (tab[i][j])
+		while (tabchar[i][j])
 		{
 			j++;
 		}
 		i++;
 	}
+}
+
+int		countwords(char *s, char c)
+{
+	size_t	i;
+	size_t	nbwords;
+
+	i = 0;
+	nbwords = 0;
+	if (s[i] == 0)
+		return (0);
+	while (s[i])
+	{
+		if (s[i] != c)
+			nbwords++;
+		while (s[i + 1] && s[i] != c)
+			i++;
+		i++;
+	}
+	return (nbwords);
 }
