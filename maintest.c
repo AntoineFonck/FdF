@@ -33,9 +33,10 @@ int main(int argc, char **argv)
 		while (j < map->w_max)
 		{
 			printf("printing tab[%d][%d]", i, j);
-			//ft_putnbr(map->tab[i][j]);
-			printf("%d ", map->tab[i][j]);
-			//write(1, " ", 1);
+			ft_putnbr(map->tab[i][j]);
+			//printf("%d ", map->tab[i][j]);
+			if (map->tab[i][j] == 0)
+				write(1, " ", 1);
 			j++;
 		}
 		write(1, "\n", 1);
@@ -60,6 +61,6 @@ int main(int argc, char **argv)
 	else
 		printf("couldn't memdel tabchar\n");
 	printf("map->w_max = %d and map->h_max = %d\n", map->w_max, map->h_max);
-	while (1) {}
+	//while (1) {}
 	return (0);
 }
