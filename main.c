@@ -42,22 +42,25 @@ void		put_coor_in_data(t_map *map, int *data)
 {
 	int x;
 	int y;
+	int offset;
 	int i;
+	int j;
 
 	y = 0;
 	i = 0;
-	while (y < map->h_max)
+	offset = 10;
+	while (i < map->h_max/*y < (map->h_max * offset)*/)
 	{
 		x = 0;
-		while (x < map->w_max)
+		j = 0;
+		while (j < map->w_max/*x < (map->w_max * offset)*/)
 		{
-			//data[i * (map->w_max) + x] = x + (map->w_max * y) + (map->w_max * map->h_max * map->tab[y][x]);
-			data[x + (map->w_max * y) + (map->w_max * map->h_max * map->tab[y][x])] = 0xFFFFFF;
-			printf("data[%d] with x = %d and y = %d\n", i, x, y);
-			i++;
-			x++;
+			data[x + (map->w_max * offset * y) + (map->w_max * map->h_max * map->tab[i][j])] = 0xFFFFFF;
+			x += offset;
+			j++;
 		}
-		y++;
+		y += offset;
+		i++;
 	}
 }
 
@@ -83,7 +86,7 @@ int		main(int argc, char **argv)
 	atoi_tab(tabchar, map);
 	mlx.mlx_ptr = mlx_init();
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "Just To Try");
-	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, map->w_max, map->h_max/*WIN_WIDTH, WIN_HEIGHT*/);
+	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, (map->w_max * 20), (map->h_max * 20)/*WIN_WIDTH, WIN_HEIGHT*/);
 	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l, &mlx.img.endian);
 
 	/*
