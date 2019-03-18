@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 19:03:56 by afonck            #+#    #+#             */
-/*   Updated: 2018/12/20 19:45:27 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/18 16:38:20 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@
 # define BUFF_SIZE 8
 
 int					get_next_line(const int fd, char **line);
+
+/*
+**	EXTRAS |||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+*/
+
+int					ft_absolute(int i);
+/*
+** converts a negative int into a positive int
+*/
 
 /*
 ** LIST FUNCTIONS |||||||||||||||||||||||||||||||||||||||||||||||||||||||||

@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/02/27 13:12:31 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/18 16:56:50 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,5 @@ void			atoi_tab(char **tabchar, t_map *map);
 
 int				countwords(char *s, char c);
 
+void			draw_line(int x1, int y1, int x2, int y2, int *data);
 #endif
