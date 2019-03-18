@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 12:30:57 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/18 16:01:41 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/18 17:26:47 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,46 +15,7 @@
 
 void	fill_pix(int *data, int x, int y, /*int w_max, */int color)
 {
-	data[x + y/*(y * w_max * 10)*/] = color;
-}
-
-void	save_line(int x1, int y1, int x2, int y2, int *data)
-{
-	int x;
-	int y;
-	//int offset;
-
-	//offset = 10;
-
-	if (x1 <= x2 && (x2 - x1) >= (y2 - y1))
-	{
-		x = x1;
-		while (x <= x2)
-		{
-			data[x + WIN_HEIGHT * (y1 + (((y2 - y1) + (x - x1)) / (x2 - x1)))] = 0xFF69B4;
-			x++;
-		}
-	}
-	else
-	{
-		y = y1;
-		if (y < y2)
-		{
-			while (y <= y2)
-			{
-				data[y * WIN_WIDTH * (x1 + (((x2 - x1) + (y - y1)) / (y2 - y1)))] = 0xFFFFFF;
-				y++;
-			}
-		}
-		else
-		{
-			while (y >= y2)
-			{
-				data[y * WIN_WIDTH * (x1 + (((x2 - x1) + (y - y1)) / (y2 - y1)))] = 0xFFFFFF;
-				y--;
-			}
-		}
-	}
+	data[x + y] = color;
 }
 
 int absolute(int i)
@@ -89,7 +50,8 @@ void paint_line(int x1, int y1, int x2, int y2, int *data)
 		yinc = -1;
 	dx = absolute(dx);
 	dy = absolute(dy);
-	data[x + y * WIN_WIDTH] = 0xFF69B4;
+	//data[x + y * WIN_WIDTH] = 0xFF69B4;
+	fill_pix(data, x, y, 0xFF69B4);
 	if (dx > dy)
 	{
 		cumul = dx / 2;
@@ -103,7 +65,8 @@ void paint_line(int x1, int y1, int x2, int y2, int *data)
 				cumul -= dx;
 				y += yinc;
 			}
-			data[x + y * WIN_WIDTH] = 0xFF00FF;
+			//data[x + y * WIN_WIDTH] = 0xFF00FF;
+			fill_pix(data, x, y, 0xFF00FF);
 			i++;
 		}
 	}
@@ -120,7 +83,8 @@ void paint_line(int x1, int y1, int x2, int y2, int *data)
 				cumul -= dy;
 				x += xinc;
 			}
-			data[x + y * WIN_WIDTH] = 0x00FF00;
+			//data[x + y * WIN_WIDTH] = 0x00FF00;
+			fill_pix(data, x, y, 0x00FF00);
 			i++;
 		}
 	}
@@ -130,7 +94,7 @@ void		put_coor_in_data(t_map *map, int *data)
 {
 	int x;
 	int y;
-	double myconst = 0.6;
+	double myconst = 1;
 	double myconst2 = 1;
 	int offset;
 	int i;
@@ -146,8 +110,8 @@ void		put_coor_in_data(t_map *map, int *data)
 		j = 0;
 		while (j < map->w_max/*x < (map->w_max * offset)*/)
 		{
-			//save_line((x - y), ((map->w_max * offset * 20) * ((x + y) / 2)), (x + offset) - y, (((x +  offset) + y) / 2), data, offset);
 			fill_pix(data, (myconst * x - myconst2 * y), ((map->tab[i][j] + (myconst / 2) * x + (myconst2 / 2) * y) * WIN_WIDTH), 0xFFFFFF);
+			paint_line((x - y) * offset, (x + y) * offset, ((x + offset) - y) * offset, ((x + offset) + y) * offset, data);
 			x += offset;
 			j++;
 		}
