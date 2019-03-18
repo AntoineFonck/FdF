@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 12:30:57 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/18 15:53:04 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/18 16:01:41 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,102 @@ void	save_line(int x1, int y1, int x2, int y2, int *data)
 
 	//offset = 10;
 
-	if (x1 <= x2 && (x2 - x1) >= abs(y2 - y1))
+	if (x1 <= x2 && (x2 - x1) >= (y2 - y1))
 	{
 		x = x1;
 		while (x <= x2)
 		{
-			data[x + (y1 + ((y2 - y1) * (x - x1)) / (x2 - x1))] = 0xFF69B4;
+			data[x + WIN_HEIGHT * (y1 + (((y2 - y1) + (x - x1)) / (x2 - x1)))] = 0xFF69B4;
 			x++;
 		}
 	}
 	else
 	{
-	y = y1;
-		while (y <= y2)
+		y = y1;
+		if (y < y2)
 		{
-			data[y + (x1 * (((x2 - x1) + (y - y1)) / (y2 - y1)))] = 0xFFFFFF;
-			y++;
+			while (y <= y2)
+			{
+				data[y * WIN_WIDTH * (x1 + (((x2 - x1) + (y - y1)) / (y2 - y1)))] = 0xFFFFFF;
+				y++;
+			}
+		}
+		else
+		{
+			while (y >= y2)
+			{
+				data[y * WIN_WIDTH * (x1 + (((x2 - x1) + (y - y1)) / (y2 - y1)))] = 0xFFFFFF;
+				y--;
+			}
+		}
+	}
+}
+
+int absolute(int i)
+{
+	if (i < 0)
+		return(-i);
+	else
+		return(i);
+}
+
+void paint_line(int x1, int y1, int x2, int y2, int *data)
+{
+	int x;
+	int y;
+	int dx;
+	int dy;
+	int i;
+	int xinc;
+	int yinc;
+	int cumul;
+	x = x1;
+	y = x2;
+	dx = x2 - x1;
+	dy = y2 - y1;
+	if (dx > 0)
+		xinc = 1;
+	else
+		xinc = -1;
+	if (dy > 0)
+		yinc = 1;
+	else
+		yinc = -1;
+	dx = absolute(dx);
+	dy = absolute(dy);
+	data[x + y * WIN_WIDTH] = 0xFF69B4;
+	if (dx > dy)
+	{
+		cumul = dx / 2;
+		i = 1;
+		while (i <= dx)
+		{
+			x += xinc;
+			cumul += dy;
+			if (cumul >= dx)
+			{
+				cumul -= dx;
+				y += yinc;
+			}
+			data[x + y * WIN_WIDTH] = 0xFF00FF;
+			i++;
+		}
+	}
+	else
+	{
+		cumul = dy / 2;
+		i = 1;
+		while (i <= dy)
+		{
+			y += yinc;
+			cumul += dx;
+			if (cumul >= dy)
+			{
+				cumul -= dy;
+				x += xinc;
+			}
+			data[x + y * WIN_WIDTH] = 0x00FF00;
+			i++;
 		}
 	}
 }
