@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 12:30:57 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/20 11:34:46 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/20 11:59:45 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void		put_coor_in_data(t_map *map, int *data)
 
 	y = 0;
 	i = 0;
-	offset = 20;
+	offset = 3;
 	while (i < map->h_max/*y < (map->h_max * offset)*/)
 	{
 		x = 0;
@@ -113,14 +113,14 @@ void		put_coor_in_data(t_map *map, int *data)
 		while (j < map->w_max/*x < (map->w_max * offset)*/)
 		{
 			point_one.x = (myconst * x - myconst2 * y);
-			point_one.y = (map->tab[i][j] + (myconst / 2) * x + (myconst2 / 2) * y);
+			point_one.y = (-(map->tab[i][j]) * 7 + (myconst / 2) * x + (myconst2 / 2) * y);
 			fill_pix(data, point_one.x, point_one.y, 0xFFFFFF);
 			x += offset;
 			point_two.x = (myconst * x - myconst2 * y);
 			j++;
 			if (j < map->w_max)
 			{
-				point_two.y = (map->tab[i][j] + (myconst / 2) * x + (myconst2 / 2) * y);
+				point_two.y = (-(map->tab[i][j]) * 7 + (myconst / 2) * x + (myconst2 / 2) * y);
 				paint_line(point_one.x, point_one.y, point_two.x, point_two.y, data);
 			//	paint_line(point_one.x, point_one.y, point_two.x, point_two.y - offset, data);
 			}
@@ -145,7 +145,7 @@ void trace_vertical(t_map *map, int *data)
 
 	x = WIN_WIDTH / 2;
 	j = 0;
-	offset = 20;
+	offset = 3;
 	while (j < map->w_max/*y < (map->h_max * offset)*/)
 	{
 		y = 0;
@@ -154,15 +154,14 @@ void trace_vertical(t_map *map, int *data)
 		while (i < map->h_max/*x < (map->w_max * offset)*/)
 		{
 			point_one.x = (myconst * x - myconst2 * y);
-			point_one.y = (map->tab[i][j] + (myconst / 2) * x + (myconst2 / 2) * y);
+			point_one.y = (-(map->tab[i][j]) * 7 + (myconst / 2) * x + (myconst2 / 2) * y);
 			fill_pix(data, point_one.x, point_one.y, 0xFFFFFF);
 			y += offset;
 			point_two.x = (myconst * x - myconst2 * y);
 			i++;
 			if (i < map->h_max)
 			{
-				printf("%d", map->tab[i][j]);
-				point_two.y = (map->tab[i][j] + (myconst / 2) * x + (myconst2 / 2) * y);
+				point_two.y = (-(map->tab[i][j]) * 7 + (myconst / 2) * x + (myconst2 / 2) * y);
 				paint_line(point_one.x, point_one.y, point_two.x, point_two.y, data);
 			}
 		}
