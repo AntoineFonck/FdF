@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/19 11:08:51 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/20 12:34:13 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,6 @@
 # include <math.h>
 # define WIN_WIDTH 1000
 # define WIN_HEIGHT 1000
-
-typedef struct	s_map
-{
-	int			**tab;
-	int			h_max;
-	int			w_max;
-}				t_map;
 
 typedef struct	s_img
 {
@@ -46,6 +39,19 @@ typedef struct	s_screenpoint
 	int			x;
 	int			y;
 }				t_screenpoint;
+
+typedef struct	s_map
+{
+	int			**tab;
+	int			h_max;
+	int			w_max;
+	int			offset;
+	double		const1;
+	double		const2;
+	int			change_alt;
+	t_screenpoint	point_one;
+	t_screenpoint	point_two;
+}				t_map;
 
 char			**check_and_read(char *arg, t_map *map);
 

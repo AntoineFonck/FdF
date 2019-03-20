@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 12:30:57 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/20 11:59:45 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/20 12:34:10 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,114 +18,34 @@ void	fill_pix(int *data, int x, int y, int color)
 	data[x + y * WIN_WIDTH] = color;
 }
 
-int absolute(int i)
-{
-	if (i < 0)
-		return(-i);
-	else
-		return(i);
-}
-
-void paint_line(int x1, int y1, int x2, int y2, int *data)
+void		trace_horizontal(t_map *map, int *data)
 {
 	int x;
 	int y;
-	int dx;
-	int dy;
-	int i;
-	int xinc;
-	int yinc;
-	int cumul;
-	x = x1;
-	y = y1;
-	dx = x2 - x1;
-	dy = y2 - y1;
-	if (dx > 0)
-		xinc = 1;
-	else
-		xinc = -1;
-	if (dy > 0)
-		yinc = 1;
-	else
-		yinc = -1;
-	dx = absolute(dx);
-	dy = absolute(dy);
-	//data[x + y * WIN_WIDTH] = 0xFF69B4;
-	fill_pix(data, x, y, 0xFF69B4);
-	if (dx > dy)
-	{
-		cumul = dx / 2;
-		i = 1;
-		while (i <= dx)
-		{
-			x += xinc;
-			cumul += dy;
-			if (cumul >= dx)
-			{
-				cumul -= dx;
-				y += yinc;
-			}
-			//data[x + y * WIN_WIDTH] = 0xFF00FF;
-			fill_pix(data, x, y, 0xFF00FF);
-			i++;
-		}
-	}
-	else
-	{
-		cumul = dy / 2;
-		i = 1;
-		while (i <= dy)
-		{
-			y += yinc;
-			cumul += dx;
-			if (cumul >= dy)
-			{
-				cumul -= dy;
-				x += xinc;
-			}
-			//data[x + y * WIN_WIDTH] = 0x00FF00;
-			fill_pix(data, x, y, 0x00FF00);
-			i++;
-		}
-	}
-}
-
-void		put_coor_in_data(t_map *map, int *data)
-{
-	int x;
-	int y;
-	double myconst = 1;
-	double myconst2 = 1;
-	int offset;
 	int i;
 	int j;
-	t_screenpoint point_one;
-	t_screenpoint point_two;
 
 	y = 0;
 	i = 0;
-	offset = 3;
 	while (i < map->h_max/*y < (map->h_max * offset)*/)
 	{
-		x = 0;
 		x = WIN_WIDTH / 2;
 		j = 0;
 		while (j < map->w_max/*x < (map->w_max * offset)*/)
 		{
-			point_one.x = (myconst * x - myconst2 * y);
-			point_one.y = (-(map->tab[i][j]) * 7 + (myconst / 2) * x + (myconst2 / 2) * y);
-			fill_pix(data, point_one.x, point_one.y, 0xFFFFFF);
-			x += offset;
-			point_two.x = (myconst * x - myconst2 * y);
+			map->point_one.x = (map->const1 * x - map->const2 * y);
+			map->point_one.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
+			fill_pix(data, map->point_one.x, map->point_one.y, 0xFFFFFF);
+			x += map->offset;
+			map->point_two.x = (map->const1 * x - map->const2 * y);
 			j++;
 			if (j < map->w_max)
 			{
-				point_two.y = (-(map->tab[i][j]) * 7 + (myconst / 2) * x + (myconst2 / 2) * y);
-				paint_line(point_one.x, point_one.y, point_two.x, point_two.y, data);
-			//	paint_line(point_one.x, point_one.y, point_two.x, point_two.y - offset, data);
+				map->point_two.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
+				draw_line(map->point_one.x, map->point_one.y, map->point_two.x, map->point_two.y, data);
 			}
 		}
-		y += offset;
+		y += map->offset;
 		i++;
 	}
 }
@@ -135,37 +55,30 @@ void trace_vertical(t_map *map, int *data)
 {
 	int x;
 	int y;
-	double myconst = 1;
-	double myconst2 = 1;
-	int offset;
 	int i;
 	int j;
-	t_screenpoint point_one;
-	t_screenpoint point_two;
 
 	x = WIN_WIDTH / 2;
 	j = 0;
-	offset = 3;
 	while (j < map->w_max/*y < (map->h_max * offset)*/)
 	{
 		y = 0;
-		//x = WIN_WIDTH / 2;
 		i = 0;
 		while (i < map->h_max/*x < (map->w_max * offset)*/)
 		{
-			point_one.x = (myconst * x - myconst2 * y);
-			point_one.y = (-(map->tab[i][j]) * 7 + (myconst / 2) * x + (myconst2 / 2) * y);
-			fill_pix(data, point_one.x, point_one.y, 0xFFFFFF);
-			y += offset;
-			point_two.x = (myconst * x - myconst2 * y);
+			map->point_one.x = (map->const1 * x - map->const2 * y);
+			map->point_one.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
+			fill_pix(data, map->point_one.x, map->point_one.y, 0xFFFFFF);
+			y += map->offset;
+			map->point_two.x = (map->const1 * x - map->const2 * y);
 			i++;
 			if (i < map->h_max)
 			{
-				point_two.y = (-(map->tab[i][j]) * 7 + (myconst / 2) * x + (myconst2 / 2) * y);
-				paint_line(point_one.x, point_one.y, point_two.x, point_two.y, data);
+				map->point_two.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
+				draw_line(map->point_one.x, map->point_one.y, map->point_two.x, map->point_two.y, data);
 			}
 		}
-		x += offset;
+		x += map->offset;
 		j++;
 	}
 }
@@ -192,15 +105,12 @@ int		main(int argc, char **argv)
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l, &mlx.img.endian);
 
-	put_coor_in_data(map, mlx.img.data);
+	map->offset = 10;
+	map->change_alt = 3;
+	map->const1 = 1;
+	map->const2 = 1;
+	trace_horizontal(map, mlx.img.data);
 	trace_vertical(map, mlx.img.data);
-	//	paint_line(0, 0, 100, 100, mlx.img.data);
-	//	while (i < WIN_WIDTH * WIN_HEIGHT)
-	//	{
-	//		printf("data[%d] = %d\n", i, mlx.img.data[i]);
-	//		i++;
-	//	}
-	//	printf("mlx.img.data[%d] = %d\n", i, mlx.img.data[i]);
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img.img_ptr, 0, 0);
 	mlx_loop(mlx.mlx_ptr);
 	return (0);
