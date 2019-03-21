@@ -6,7 +6,7 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:06:42 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/20 15:46:50 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/21 11:48:02 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	draw_line(int x1, int y1, int x2, int y2, int *data)
 	yinc = pos_or_neg(dy);
 	dx = ft_absolute(dx);
 	dy = ft_absolute(dy);
-	//data[x + y * WIN_WIDTH] = 0xFFFFFF;
+	data[x + y * WIN_WIDTH] = 0xFFFFFF;
 	if (dx > dy)
 	{
 		draw_horizontal(x, y, dx, dy, data, yinc, xinc);
