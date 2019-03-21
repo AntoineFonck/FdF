@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 12:30:57 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/20 12:34:10 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/21 14:16:10 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void trace_vertical(t_map *map, int *data)
 
 int		main(int argc, char **argv)
 {
-	t_mlx	mlx;
+	//t_mlx	mlx;
 	t_map	*map;
 	char	**tabchar;
 	int	i;
@@ -97,21 +97,24 @@ int		main(int argc, char **argv)
 		return (1);
 	//if ((mlx.img = malloc(sizeof(t_img))) == NULL)
 	//	return (1);
+	//if ((map->img = malloc(sizeof(t_img))) == NULL)
+	//	return (1);
 	if ((tabchar = check_and_read(argv[1], map)) != NULL)
 		ft_putstr("check and read works\n");
 	atoi_tab(tabchar, map);
-	mlx.mlx_ptr = mlx_init();
-	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "Just To Try");
-	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-	mlx.img.data = (int *)mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bpp, &mlx.img.size_l, &mlx.img.endian);
+	map->mlx_ptr = mlx_init();
+	map->win_ptr = mlx_new_window(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "Just To Try");
+	map->img.img_ptr = mlx_new_image(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr, &map->img.bpp, &map->img.size_l, &map->img.endian);
 
-	map->offset = 10;
+	map->offset = 0;
 	map->change_alt = 3;
 	map->const1 = 1;
 	map->const2 = 1;
-	trace_horizontal(map, mlx.img.data);
-	trace_vertical(map, mlx.img.data);
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img.img_ptr, 0, 0);
-	mlx_loop(mlx.mlx_ptr);
+	trace_horizontal(map, map->img.data);
+	trace_vertical(map, map->img.data);
+	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
+	mlx_key_hook(map->win_ptr, &zoom, map);
+	mlx_loop(map->mlx_ptr);
 	return (0);
 }

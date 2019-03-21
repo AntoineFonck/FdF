@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/20 12:34:13 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/21 14:14:38 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # include "./minilibx_macos/mlx.h"
 # include "./libft/libft.h"
 # include <math.h>
-# define WIN_WIDTH 1000
-# define WIN_HEIGHT 1000
+# define WIN_WIDTH 2560
+# define WIN_HEIGHT 1440
 
 typedef struct	s_img
 {
@@ -26,14 +26,14 @@ typedef struct	s_img
 	int			bpp;
 	int			endian;
 }				t_img;
-
+/*
 typedef struct	s_mlx
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_img		img;
 }				t_mlx;
-
+*/
 typedef struct	s_screenpoint
 {
 	int			x;
@@ -42,6 +42,9 @@ typedef struct	s_screenpoint
 
 typedef struct	s_map
 {
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_img		img;
 	int			**tab;
 	int			h_max;
 	int			w_max;
@@ -62,4 +65,10 @@ void			atoi_tab(char **tabchar, t_map *map);
 int				countwords(char *s, char c);
 
 void			draw_line(int x1, int y1, int x2, int y2, int *data);
+
+int				zoom(int key, t_map *map);
+
+void			trace_horizontal(t_map *map, int *data);
+
+void			trace_vertical(t_map *map, int *data);
 #endif
