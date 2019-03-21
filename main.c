@@ -107,14 +107,14 @@ int		main(int argc, char **argv)
 	map->img.img_ptr = mlx_new_image(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr, &map->img.bpp, &map->img.size_l, &map->img.endian);
 
-	map->offset = 0;
+	map->offset = 20;
 	map->change_alt = 3;
 	map->const1 = 1;
 	map->const2 = 1;
 	trace_horizontal(map, map->img.data);
 	trace_vertical(map, map->img.data);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
-	mlx_key_hook(map->win_ptr, &zoom, map);
+	mlx_key_hook(map->win_ptr, &all, map);
 	mlx_loop(map->mlx_ptr);
 	return (0);
 }

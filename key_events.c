@@ -12,19 +12,55 @@
 
 #include "fdf.h"
 
+int	all(int key, t_map *map)
+{
+	if (key == 24 || key == 27)
+		altitude(key, map);
+	else if (key == 13 || key == 1)
+		zoom(key, map);
+	return (0);
+}
+
+int	altitude(int key, t_map *map)
+{
+	mlx_destroy_image(map->mlx_ptr, map->img.img_ptr);
+	mlx_clear_window(map->mlx_ptr, map->win_ptr);
+	map->img.img_ptr = mlx_new_image(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr, &map->img.bpp, &map->img.size_l, &map->img.endian);
+	if (key == 24)
+		map->change_alt++;
+	else if (key == 27)
+		map->change_alt--;
+	trace_horizontal(map, map->img.data);
+	trace_vertical(map, map->img.data);
+	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
+	ft_putnbr(map->change_alt);
+	return(1);
+}
+
 int	zoom(int key, t_map *map)
 {
 	mlx_destroy_image(map->mlx_ptr, map->img.img_ptr);
 	mlx_clear_window(map->mlx_ptr, map->win_ptr);
 	map->img.img_ptr = mlx_new_image(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr, &map->img.bpp, &map->img.size_l, &map->img.endian);
-	if (key == 116)
-		map->change_alt++;
-	else if (key == 121)
-		map->change_alt--;
+	if (key == 13)// && map->const1 < 1)// && map->const2 < 1)
+	{
+		//map->const1 += 0.1;
+		//map->const2 += 0.1;
+		map->offset++;
+		//map->change_alt++;
+	}
+	else if (key == 1)//&& map->const1 > 0.5)// && map->const2 > 0.5)
+	{
+		//map->const1 -= 0.1;
+		//map->const2 -= 0.1;
+		map->offset--;
+		//map->change_alt--;
+	}
 	trace_horizontal(map, map->img.data);
 	trace_vertical(map, map->img.data);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
-	ft_putnbr(map->change_alt);
+	ft_putnbr(map->offset);
 	return(1);
 }

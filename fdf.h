@@ -15,8 +15,8 @@
 # include "./minilibx_macos/mlx.h"
 # include "./libft/libft.h"
 # include <math.h>
-# define WIN_WIDTH 2560
-# define WIN_HEIGHT 1440
+# define WIN_WIDTH 1680
+# define WIN_HEIGHT 1050
 
 typedef struct	s_img
 {
@@ -66,7 +66,11 @@ int				countwords(char *s, char c);
 
 void			draw_line(int x1, int y1, int x2, int y2, int *data);
 
+int			altitude(int key, t_map *map);
+
 int				zoom(int key, t_map *map);
+
+int			all(int key, t_map *map);
 
 void			trace_horizontal(t_map *map, int *data);
 
