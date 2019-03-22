@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 12:30:57 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/22 15:02:58 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/22 15:07:16 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 void	fill_pix(int *data, int x, int y, int color)
 {
-	data[x + y * WIN_WIDTH] = color;
+	if ((x + y * WIN_WIDTH) < (WIN_WIDTH * WIN_HEIGHT) && (x + y * WIN_WIDTH) > 0)
+		data[x + y * WIN_WIDTH] = color;
 }
 
 void		trace_horizontal(t_map *map, int *data)
@@ -108,7 +109,7 @@ int		main(int argc, char **argv)
 	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr, &map->img.bpp, &map->img.size_l, &map->img.endian);
 
 	map->offset = 2;
-	map->change_alt = 2;
+	map->change_alt = 1;
 	map->const1 = 1;
 	map->const2 = 1;
 	map->start_point.x = WIN_WIDTH / 2;
