@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/22 14:21:17 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/22 15:09:04 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ typedef struct	s_screenpoint
 	int			y;
 }				t_screenpoint;
 
+typedef struct 	s_start_point
+{
+	int			x;
+	int			y;
+}				t_start_point;
+
 typedef struct	s_map
 {
 	void		*mlx_ptr;
@@ -48,10 +54,11 @@ typedef struct	s_map
 	int			**tab;
 	int			h_max;
 	int			w_max;
-	int		offset;
+	double		offset;
 	double		const1;
 	double		const2;
 	double			change_alt;
+	t_start_point	start_point;
 	t_screenpoint	point_one;
 	t_screenpoint	point_two;
 }				t_map;

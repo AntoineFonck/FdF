@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 12:30:57 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/22 14:42:28 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/22 15:07:16 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void		trace_horizontal(t_map *map, int *data)
 	int i;
 	int j;
 
-	y = 0;
+	y = map->start_point.y;
 	i = 0;
 	while (i < map->h_max/*y < (map->h_max * offset)*/)
 	{
-		x = WIN_WIDTH / 2;
+		x = map->start_point.x;
 		j = 0;
 		while (j < map->w_max/*x < (map->w_max * offset)*/)
 		{
@@ -59,11 +59,11 @@ void trace_vertical(t_map *map, int *data)
 	int i;
 	int j;
 
-	x = WIN_WIDTH / 2;
+	x = map->start_point.x;
 	j = 0;
 	while (j < map->w_max/*y < (map->h_max * offset)*/)
 	{
-		y = 0;
+		y = map->start_point.y;
 		i = 0;
 		while (i < map->h_max/*x < (map->w_max * offset)*/)
 		{
@@ -112,6 +112,8 @@ int		main(int argc, char **argv)
 	map->change_alt = 1;
 	map->const1 = 1;
 	map->const2 = 1;
+	map->start_point.x = WIN_WIDTH / 2;
+	map->start_point.y = 0;
 	trace_horizontal(map, map->img.data);
 	trace_vertical(map, map->img.data);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
