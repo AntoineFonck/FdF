@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/21 14:14:38 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/22 13:02:09 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # include "./minilibx_macos/mlx.h"
 # include "./libft/libft.h"
 # include <math.h>
-# define WIN_WIDTH 1680
-# define WIN_HEIGHT 1050
+# define WIN_WIDTH 2860
+# define WIN_HEIGHT 1840
 
 typedef struct	s_img
 {
@@ -48,10 +48,10 @@ typedef struct	s_map
 	int			**tab;
 	int			h_max;
 	int			w_max;
-	int			offset;
+	int		offset;
 	double		const1;
 	double		const2;
-	int			change_alt;
+	double			change_alt;
 	t_screenpoint	point_one;
 	t_screenpoint	point_two;
 }				t_map;
