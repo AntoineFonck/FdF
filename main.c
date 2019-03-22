@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 12:30:57 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/22 15:07:16 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/22 15:42:46 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	fill_pix(int *data, int x, int y, int color)
 {
-	if ((x + y * WIN_WIDTH) < (WIN_WIDTH * WIN_HEIGHT) && (x + y * WIN_WIDTH) > 0)
+	if ((x + y * WIN_WIDTH) < (WIN_WIDTH * WIN_HEIGHT) && (x + y * WIN_WIDTH) > 0 && x < WIN_WIDTH && x > 0)
 		data[x + y * WIN_WIDTH] = color;
 }
 

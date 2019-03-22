@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:25:02 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/22 15:08:30 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/22 15:42:52 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ int	zoom(int key, t_map *map)
 	if (key == 13)// && map->const1 < 1)// && map->const2 < 1)
 	{
 		//map->const1 += 0.1;
-		map->const2 += 0.1;
+		//map->const2 += 0.1;
 		map->offset++;
 		//map->change_alt += 0.118;
 	}
-	else if (key == 1)//&& map->const1 > 0.5)// && map->const2 > 0.5)
+	else if (key == 1 && map->offset > 0)//&& map->const1 > 0.5)// && map->const2 > 0.5)
 	{
 		//map->const1 -= 0.1;
 		//map->const2 -= 0.1;
