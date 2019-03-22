@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 12:30:57 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/22 16:59:57 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/22 19:08:28 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,53 @@
 
 void	fill_pix(int *data, int x, int y, int z)
 {
-	int color;
-	int red;
-	int green;
-	int blue;
+	//int color;
+	//int red;
+	//int green;
+	//int blue;
 
-	red = 255;
-	green = 255;
-	blue = 255;
+	//red = 0;
+	//green = 0;
+	//blue = 0;
 
-	color = rgb_to_int(red, green, blue);
+	//color = rgb_to_int(red, green, blue);
 	if ((x + y * WIN_WIDTH) < (WIN_WIDTH * WIN_HEIGHT) && (x + y * WIN_WIDTH) > 0 && x < WIN_WIDTH && x > 0)
 	{
-		/*
-		while (z)
+		if (z < -5)
 		{
-			while (blue <= 255)
-			{
-				data[x + y * WIN_WIDTH] = rgb_to_int(red, green, blue);
-				blue++;
-			}
-			green = 200;
-			data[x + y * WIN_WIDTH] = rgb_to_int(red, green, blue);
-			z--;
+			//red = 33;
+			//blue = 229;
+			//data[x + y * WIN_WIDTH] = rgb_to_int(red, green, blue);
+			data[x + y * WIN_WIDTH] = 0x0000C8;
 		}
-		*/
+		else if (z >= -5 && z <= 0)
+		{
+			//red = 0;
+			//green = 66;
+			//blue = 191;
+			//data[x + y * WIN_WIDTH] = rgb_to_int(red, green, blue);
+			data[x + y * WIN_WIDTH] = 0x0042BF;
+		}
+		else if (z > 0 && z <= 8)
+			data[x + y * WIN_WIDTH] = 0x05701E;
+		else if (z > 8 && z <= 16)
+			data[x + y * WIN_WIDTH] = 0x659C16;
+		else if (z > 16 && z <= 26)
+			data[x + y * WIN_WIDTH] = 0xBFC610;
+		else if (z > 26 && z <= 36)
+			data[x + y * WIN_WIDTH] = 0xF7FF42;
+		else if (z > 36 && z <= 50)
+			data[x + y * WIN_WIDTH] = 0xC4A564;
+		else if (z > 50 && z <= 70)
+			data[x + y * WIN_WIDTH] = 0x986D42;
+		else if (z > 70 && z <= 90)
+			data[x + y * WIN_WIDTH] = 0x79472A;
+		else if (z > 90 && z <= 130)
+			data[x + y * WIN_WIDTH] = 0x3B271A;
+		else if (z > 130 && z <= 170)
+			data[x + y * WIN_WIDTH] = 0x659C16;
+		else
+			data[x + y * WIN_WIDTH] = 0xD9E7E8;
 		/*
 		if (z <= 7)
 			data[x + y * WIN_WIDTH] = color;
@@ -51,6 +73,7 @@ void	fill_pix(int *data, int x, int y, int z)
 		else
 			data[x + y * WIN_WIDTH] = color;
 			*/
+		/*
 		while (z != 0)
 		{
 			z--;
@@ -58,6 +81,7 @@ void	fill_pix(int *data, int x, int y, int z)
 				color = rgb_to_int(red, (green -= 10), (blue -= 20));
 		}
 		data[x + y * WIN_WIDTH] = color;
+		*/
 	}
 }
 
@@ -153,11 +177,12 @@ int		main(int argc, char **argv)
 	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr, &map->img.bpp, &map->img.size_l, &map->img.endian);
 
 	map->offset = 2;
-	map->change_alt = 1;
+	map->change_alt = 0.2;
 	map->const1 = 1;
 	map->const2 = 1;
 	map->start_point.x = WIN_WIDTH / 2;
 	map->start_point.y = 0;
+	map->view = 1;
 	trace_horizontal(map, map->img.data);
 	trace_vertical(map, map->img.data);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);

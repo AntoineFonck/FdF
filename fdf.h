@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/22 16:14:01 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/22 18:35:30 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct	s_map
 	int			h_max;
 	int			w_max;
 	int			altitude_z;
+	int			view;
 	double		offset;
 	double		const1;
 	double		const2;
