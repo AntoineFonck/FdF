@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/21 14:14:38 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/22 11:26:50 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # include "./minilibx_macos/mlx.h"
 # include "./libft/libft.h"
 # include <math.h>
-# define WIN_WIDTH 1680
-# define WIN_HEIGHT 1050
+# define WIN_WIDTH 2560
+# define WIN_HEIGHT 1440
 
 typedef struct	s_img
 {
