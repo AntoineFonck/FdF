@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 12:30:57 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/21 14:16:10 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/22 14:42:28 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 void	fill_pix(int *data, int x, int y, int color)
 {
-	data[x + y * WIN_WIDTH] = color;
+	if ((x + y * WIN_WIDTH) < (WIN_WIDTH * WIN_HEIGHT) && (x + y * WIN_WIDTH) > 0)
+		data[x + y * WIN_WIDTH] = color;
 }
 
 void		trace_horizontal(t_map *map, int *data)
@@ -35,7 +36,7 @@ void		trace_horizontal(t_map *map, int *data)
 		{
 			map->point_one.x = (map->const1 * x - map->const2 * y);
 			map->point_one.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
-			fill_pix(data, map->point_one.x, map->point_one.y, 0xFFFFFF);
+			//fill_pix(data, map->point_one.x, map->point_one.y, 0xFFFFFF);
 			x += map->offset;
 			map->point_two.x = (map->const1 * x - map->const2 * y);
 			j++;
@@ -68,7 +69,7 @@ void trace_vertical(t_map *map, int *data)
 		{
 			map->point_one.x = (map->const1 * x - map->const2 * y);
 			map->point_one.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
-			fill_pix(data, map->point_one.x, map->point_one.y, 0xFFFFFF);
+			//fill_pix(data, map->point_one.x, map->point_one.y, 0xFFFFFF);
 			y += map->offset;
 			map->point_two.x = (map->const1 * x - map->const2 * y);
 			i++;
@@ -107,8 +108,8 @@ int		main(int argc, char **argv)
 	map->img.img_ptr = mlx_new_image(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr, &map->img.bpp, &map->img.size_l, &map->img.endian);
 
-	map->offset = 20;
-	map->change_alt = 3;
+	map->offset = 2;
+	map->change_alt = 1;
 	map->const1 = 1;
 	map->const2 = 1;
 	trace_horizontal(map, map->img.data);
