@@ -6,17 +6,59 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 12:30:57 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/22 15:42:46 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/22 16:59:57 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
+#include "colortest.c"
 
-void	fill_pix(int *data, int x, int y, int color)
+void	fill_pix(int *data, int x, int y, int z)
 {
+	int color;
+	int red;
+	int green;
+	int blue;
+
+	red = 255;
+	green = 255;
+	blue = 255;
+
+	color = rgb_to_int(red, green, blue);
 	if ((x + y * WIN_WIDTH) < (WIN_WIDTH * WIN_HEIGHT) && (x + y * WIN_WIDTH) > 0 && x < WIN_WIDTH && x > 0)
+	{
+		/*
+		while (z)
+		{
+			while (blue <= 255)
+			{
+				data[x + y * WIN_WIDTH] = rgb_to_int(red, green, blue);
+				blue++;
+			}
+			green = 200;
+			data[x + y * WIN_WIDTH] = rgb_to_int(red, green, blue);
+			z--;
+		}
+		*/
+		/*
+		if (z <= 7)
+			data[x + y * WIN_WIDTH] = color;
+		else if (z > 7 && z < 10)
+			data[x + y * WIN_WIDTH] = color;
+		else if (z == 10)
+			data[x + y * WIN_WIDTH] = color;
+		else
+			data[x + y * WIN_WIDTH] = color;
+			*/
+		while (z != 0)
+		{
+			z--;
+			if (blue < 256)
+				color = rgb_to_int(red, (green -= 10), (blue -= 20));
+		}
 		data[x + y * WIN_WIDTH] = color;
+	}
 }
 
 void		trace_horizontal(t_map *map, int *data)
@@ -43,7 +85,8 @@ void		trace_horizontal(t_map *map, int *data)
 			if (j < map->w_max)
 			{
 				map->point_two.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
-				draw_line(map->point_one.x, map->point_one.y, map->point_two.x, map->point_two.y, data);
+				map->altitude_z = map->tab[i][j];
+				draw_line(map->point_one.x, map->point_one.y, map->point_two.x, map->point_two.y, map->altitude_z, data);
 			}
 		}
 		y += map->offset;
@@ -76,7 +119,8 @@ void trace_vertical(t_map *map, int *data)
 			if (i < map->h_max)
 			{
 				map->point_two.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
-				draw_line(map->point_one.x, map->point_one.y, map->point_two.x, map->point_two.y, data);
+				map->altitude_z = map->tab[i][j];
+				draw_line(map->point_one.x, map->point_one.y, map->point_two.x, map->point_two.y, map->altitude_z, data);
 			}
 		}
 		x += map->offset;
