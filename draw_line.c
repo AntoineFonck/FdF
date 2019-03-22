@@ -6,14 +6,14 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:06:42 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/22 14:22:35 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/22 16:15:57 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 
-void	draw_vertical(int y, int x, int dy, int dx, int *data, int yinc, int xinc)
+void	draw_vertical(int y, int x, int dy, int dx, int *data, int yinc, int xinc, int z)
 {
 	int i;
 	int cumul;
@@ -29,13 +29,12 @@ void	draw_vertical(int y, int x, int dy, int dx, int *data, int yinc, int xinc)
 			cumul -= dy;
 			x += xinc;
 		}
-		//data[x + y * WIN_WIDTH] = 0x00FF00;
-		fill_pix(data, x, y, 0x00FF00);
+		fill_pix(data, x, y, z);
 		i++;
 	}
 }
 
-void	draw_horizontal(int x, int y, int dx, int dy, int *data, int yinc, int xinc)
+void	draw_horizontal(int x, int y, int dx, int dy, int *data, int yinc, int xinc, int z)
 {
 	int i;
 	int cumul;
@@ -51,8 +50,7 @@ void	draw_horizontal(int x, int y, int dx, int dy, int *data, int yinc, int xinc
 			cumul -= dx;
 			y += yinc;
 		}
-		//data[x + y * WIN_WIDTH] = 0xFF00FF;
-		fill_pix(data, x, y, 0xFF00FF);
+		fill_pix(data, x, y, z);
 		i++;
 	}
 }
@@ -65,31 +63,26 @@ int pos_or_neg(int i)
 		return (-1);
 }
 
-void	draw_line(int x1, int y1, int x2, int y2, int *data)
+void	draw_line(int x1, int y1, int x2, int y2, int z, int *data)
 {
-//	int x;
-//	int y;
 	int dx;
 	int dy;
 	int xinc;
 	int yinc;
 
-//	x = x1; /* don't know if we need that! -> every x1 and y1 could be changed to x and y?*/
-//	y = y1;
 	dx = x2 - x1;
 	dy = y2 - y1;
 	xinc = pos_or_neg(dx);
 	yinc = pos_or_neg(dy);
 	dx = ft_absolute(dx);
 	dy = ft_absolute(dy);
-	//data[x1/*or x*/ + y1/*or y*/ * WIN_WIDTH] = 0xFFFFFF;
-	fill_pix(data, x1, y1, 0xFFFFFF);
+	fill_pix(data, x1, y1, z);
 	if (dx > dy)
 	{
-		draw_horizontal(x1/*or x*/, y1/*or y*/, dx, dy, data, yinc, xinc);
+		draw_horizontal(x1, y1, dx, dy, data, yinc, xinc, z);
 	}
 	else
 	{
-		draw_vertical(y1/*or y*/, x1/*or x*/, dy, dx, data, yinc, xinc);
+		draw_vertical(y1, x1, dy, dx, data, yinc, xinc, z);
 	}
 }

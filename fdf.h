@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/22 15:09:04 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/22 16:14:01 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct	s_map
 	int			**tab;
 	int			h_max;
 	int			w_max;
+	int			altitude_z;
 	double		offset;
 	double		const1;
 	double		const2;
@@ -71,7 +72,7 @@ void			atoi_tab(char **tabchar, t_map *map);
 
 int				countwords(char *s, char c);
 
-void			draw_line(int x1, int y1, int x2, int y2, int *data);
+void			draw_line(int x1, int y1, int x2, int y2, int z, int *data);
 
 int			altitude(int key, t_map *map);
 
@@ -83,5 +84,5 @@ void			trace_horizontal(t_map *map, int *data);
 
 void			trace_vertical(t_map *map, int *data);
 
-void			fill_pix(int *data, int x, int y, int color);
+void			fill_pix(int *data, int x, int y, int z);
 #endif
