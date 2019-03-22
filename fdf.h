@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/22 11:26:50 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/22 13:06:18 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ typedef struct	s_map
 	int			**tab;
 	int			h_max;
 	int			w_max;
-	int			offset;
+	int		offset;
 	double		const1;
 	double		const2;
-	int			change_alt;
+	double			change_alt;
 	t_screenpoint	point_one;
 	t_screenpoint	point_two;
 }				t_map;

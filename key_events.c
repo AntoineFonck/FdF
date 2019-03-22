@@ -6,19 +6,16 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:25:02 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/22 12:59:15 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/22 13:07:42 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	all(int key, t_map *map)
+int close_window(t_map *map)
 {
-	if (key == 24 || key == 27)
-		altitude(key, map);
-	else if (key == 13 || key == 1)
-		zoom(key, map);
-	return (0);
+	mlx_destroy_window(map->mlx_ptr, map->win_ptr);
+	exit(0);
 }
 
 int	altitude(int key, t_map *map)
@@ -28,9 +25,9 @@ int	altitude(int key, t_map *map)
 	map->img.img_ptr = mlx_new_image(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr, &map->img.bpp, &map->img.size_l, &map->img.endian);
 	if (key == 24 && map->change_alt < 20)
-		map->change_alt++;
+		map->change_alt += 0.1;
 	else if (key == 27 && map->change_alt > -20)
-		map->change_alt--;
+		map->change_alt -= 0.1;
 	trace_horizontal(map, map->img.data);
 	trace_vertical(map, map->img.data);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
@@ -55,7 +52,7 @@ int	zoom(int key, t_map *map)
 	{
 		//map->const1 -= 0.1;
 		//map->const2 -= 0.1;
-		map->offset--;
+		map->offset++;
 		//map->change_alt--;
 	}
 	trace_horizontal(map, map->img.data);
@@ -63,4 +60,15 @@ int	zoom(int key, t_map *map)
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	ft_putnbr(map->offset);
 	return(1);
+}
+
+int all(int key, t_map *map)
+{
+	if (key == 24 || key == 27)
+		altitude(key, map);
+	else if (key == 13 || key == 1)
+		zoom(key, map);
+	else if (key == 53)
+		close_window(map);
+	return (0);
 }
