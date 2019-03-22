@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:25:02 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/22 15:46:41 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/22 17:00:34 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,29 @@ int move(int key, t_map *map)
 	return(1);
 }
 
+void reset_map(t_map *map)
+{
+	map->offset = 2;
+	map->change_alt = 1;
+	map->const1 = 1;
+	map->const2 = 1;
+	map->start_point.x = WIN_WIDTH / 2;
+	map->start_point.y = 0;
+}
+
+int	reset(t_map *map)
+{
+	mlx_destroy_image(map->mlx_ptr, map->img.img_ptr);
+	mlx_clear_window(map->mlx_ptr, map->win_ptr);
+	map->img.img_ptr = mlx_new_image(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr, &map->img.bpp, &map->img.size_l, &map->img.endian);
+	reset_map(map);
+	trace_horizontal(map, map->img.data);
+	trace_vertical(map, map->img.data);
+	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
+	return(1);
+}
+
 int all(int key, t_map *map)
 {
 	if (key == 24 || key == 27)
@@ -105,5 +128,7 @@ int all(int key, t_map *map)
 		move(key, map);
 	else if (key == 53)
 		close_window(map);
+	else if (key == 15)
+		reset(map);
 	return (0);
 }
