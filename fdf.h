@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/22 18:35:30 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/22 19:45:57 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct	s_map
 	int			w_max;
 	int			altitude_z;
 	int			view;
+	int			menu;
 	double		offset;
 	double		const1;
 	double		const2;
@@ -86,4 +87,6 @@ void			trace_horizontal(t_map *map, int *data);
 void			trace_vertical(t_map *map, int *data);
 
 void			fill_pix(int *data, int x, int y, int z);
+
+void			menu(t_map *map);
 #endif
