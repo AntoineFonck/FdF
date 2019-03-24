@@ -13,7 +13,7 @@
 #include "fdf.h"
 #include <stdio.h>
 
-void	draw_vertical(int y, int x, int dy, int dx, int *data, int yinc, int xinc, int z)
+void	draw_vertical(int dy, int dx, int *data, int yinc, int xinc, t_map *map)
 {
 	int i;
 	int cumul;
@@ -22,19 +22,19 @@ void	draw_vertical(int y, int x, int dy, int dx, int *data, int yinc, int xinc, 
 	cumul = dy / 2;
 	while (i <= dy)
 	{
-		y += yinc;
+		map->point_one.y += yinc;
 		cumul += dx;
 		if (cumul >= dy)
 		{
 			cumul -= dy;
-			x += xinc;
+			map->point_one.x += xinc;
 		}
-		fill_pix(data, x, y, z);
+		fill_pix(data, map->point_one.x, map->point_one.y, map->altitude_z);
 		i++;
 	}
 }
 
-void	draw_horizontal(int x, int y, int dx, int dy, int *data, int yinc, int xinc, int z)
+void	draw_horizontal(int dx, int dy, int *data, int yinc, int xinc, t_map *map)
 {
 	int i;
 	int cumul;
@@ -43,14 +43,14 @@ void	draw_horizontal(int x, int y, int dx, int dy, int *data, int yinc, int xinc
 	cumul = dx / 2;
 	while (i <= dx)
 	{
-		x += xinc;
+		map->point_one.x += xinc;
 		cumul += dy;
 		if (cumul >= dx)
 		{
 			cumul -= dx;
-			y += yinc;
+			map->point_one.y += yinc;
 		}
-		fill_pix(data, x, y, z);
+		fill_pix(data, map->point_one.x, map->point_one.y, map->altitude_z);
 		i++;
 	}
 }
@@ -63,26 +63,22 @@ int pos_or_neg(int i)
 		return (-1);
 }
 
-void	draw_line(int x1, int y1, int x2, int y2, int z, int *data)
+void	draw_line(t_map *map, int *data)
 {
 	int dx;
 	int dy;
 	int xinc;
 	int yinc;
 
-	dx = x2 - x1;
-	dy = y2 - y1;
+	dx = map->point_two.x - map->point_one.x;
+	dy = map->point_two.y - map->point_one.y;
 	xinc = pos_or_neg(dx);
 	yinc = pos_or_neg(dy);
 	dx = ft_absolute(dx);
 	dy = ft_absolute(dy);
-	fill_pix(data, x1, y1, z);
+	fill_pix(data, map->point_one.x, map->point_one.y, map->altitude_z);
 	if (dx > dy)
-	{
-		draw_horizontal(x1, y1, dx, dy, data, yinc, xinc, z);
-	}
+		draw_horizontal(dx, dy, data, yinc, xinc, map);
 	else
-	{
-		draw_vertical(y1, x1, dy, dx, data, yinc, xinc, z);
-	}
+		draw_vertical(dy, dx, data, yinc, xinc, map);
 }

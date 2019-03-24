@@ -110,7 +110,8 @@ void		trace_horizontal(t_map *map, int *data)
 			{
 				map->point_two.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
 				map->altitude_z = map->tab[i][j];
-				draw_line(map->point_one.x, map->point_one.y, map->point_two.x, map->point_two.y, map->altitude_z, data);
+				//draw_line(map->point_one.x, map->point_one.y, map->point_two.x, map->point_two.y, map->altitude_z, data);
+				draw_line(map, data);
 			}
 		}
 		y += map->offset;
@@ -144,7 +145,8 @@ void trace_vertical(t_map *map, int *data)
 			{
 				map->point_two.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
 				map->altitude_z = map->tab[i][j];
-				draw_line(map->point_one.x, map->point_one.y, map->point_two.x, map->point_two.y, map->altitude_z, data);
+				//draw_line(map->point_one.x, map->point_one.y, map->point_two.x, map->point_two.y, map->altitude_z, data);
+				draw_line(map, data);
 			}
 		}
 		x += map->offset;
