@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/25 13:24:03 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/25 14:20:22 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,8 @@ void			menu(t_map *map);
 void        trace_all(t_map *map);
 
 void		trace_par_or_hor(t_map *map);
+
+void    destroy_and_clear(t_map *map);
+
+void    init_map(t_map *map);
 #endif
