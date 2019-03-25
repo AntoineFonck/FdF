@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/22 19:45:57 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/25 13:24:03 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,8 @@ void			trace_vertical(t_map *map, int *data);
 void			fill_pix(int *data, int x, int y, int z);
 
 void			menu(t_map *map);
+
+void        trace_all(t_map *map);
+
+void		trace_par_or_hor(t_map *map);
 #endif

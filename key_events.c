@@ -6,12 +6,11 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:25:02 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/22 19:09:02 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/25 13:22:55 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "parallel_proj.c"
 int close_window(t_map *map)
 {
 	mlx_destroy_window(map->mlx_ptr, map->win_ptr);
@@ -24,18 +23,7 @@ int change_view(t_map *map)
 	mlx_clear_window(map->mlx_ptr, map->win_ptr);
 	map->img.img_ptr = mlx_new_image(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr, &map->img.bpp, &map->img.size_l, &map->img.endian);
-	if (map->view == 1)
-	{
-		map->view = 0;
-		trace_horizontal_par(map, map->img.data);
-		trace_vertical_par(map, map->img.data);
-	}
-	else
-	{
-		map->view = 1;
-		trace_horizontal(map, map->img.data);
-		trace_vertical(map, map->img.data);
-	}
+	trace_par_or_hor(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	ft_putnbr(map->change_alt);
 	return(1);
@@ -51,16 +39,7 @@ int	altitude(int key, t_map *map)
 		map->change_alt += 0.1;
 	else if (key == 27)
 		map->change_alt -= 0.1;
-	if (map->view == 1)
-	{
-		trace_horizontal(map, map->img.data);
-		trace_vertical(map, map->img.data);
-	}
-	else
-	{
-		trace_horizontal_par(map, map->img.data);
-		trace_vertical_par(map, map->img.data);
-	}
+	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	ft_putnbr(map->change_alt);
 	return(1);
@@ -74,28 +53,15 @@ int	zoom(int key, t_map *map)
 	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr, &map->img.bpp, &map->img.size_l, &map->img.endian);
 	if (key == 13)// && map->const1 < 1)// && map->const2 < 1)
 	{
-		//map->const1 += 0.1;
-		//map->const2 += 0.1;
-		map->offset++;
-		//map->change_alt += 0.118;
+			map->change_alt += map->change_alt / map->offset;
+			map->offset++;
 	}
-	else if (key == 1 && map->offset > 0)//&& map->const1 > 0.5)// && map->const2 > 0.5)
+	else if (key == 1 && map->offset > 1)//&& map->const1 > 0.5)// && map->const2 > 0.5)
 	{
-		//map->const1 -= 0.1;
-		//map->const2 -= 0.1;
-		map->offset--;
-		//map->change_alt -= 2;
+			map->change_alt -= map->change_alt / map->offset;
+			map->offset--;
 	}
-	if (map->view == 1)
-	{
-		trace_horizontal(map, map->img.data);
-		trace_vertical(map, map->img.data);
-	}
-	else
-	{
-		trace_horizontal_par(map, map->img.data);
-		trace_vertical_par(map, map->img.data);
-	}
+	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	ft_putnbr(map->offset);
 	return(1);
@@ -131,16 +97,7 @@ int move(int key, t_map *map)
 		if (map->view == 1)
 			map->start_point.y -= 10;
 	}
-	if (map->view == 1)
-	{
-		trace_horizontal(map, map->img.data);
-		trace_vertical(map, map->img.data);
-	}
-	else
-	{
-		trace_horizontal_par(map, map->img.data);
-		trace_vertical_par(map, map->img.data);
-	}
+	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	ft_putnbr(map->change_alt);
 	return(1);
@@ -163,16 +120,7 @@ int	reset(t_map *map)
 	map->img.img_ptr = mlx_new_image(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr, &map->img.bpp, &map->img.size_l, &map->img.endian);
 	reset_map(map);
-	if (map->view == 1)
-	{
-		trace_horizontal(map, map->img.data);
-		trace_vertical(map, map->img.data);
-	}
-	else
-	{
-		trace_horizontal_par(map, map->img.data);
-		trace_vertical_par(map, map->img.data);
-	}
+	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	return(1);
 }
