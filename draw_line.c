@@ -6,27 +6,27 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:06:42 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/22 16:15:57 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/25 14:53:10 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 
-void	draw_vertical(int dy, int dx, int *data, int yinc, int xinc, t_map *map)
+void	draw_vertical(int *data, int yinc, int xinc, t_map *map)
 {
 	int i;
 	int cumul;
 
 	i = 1;
-	cumul = dy / 2;
-	while (i <= dy)
+	cumul = map->dy / 2;
+	while (i <= map->dy)
 	{
 		map->point_one.y += yinc;
-		cumul += dx;
-		if (cumul >= dy)
+		cumul += map->dx;
+		if (cumul >= map->dy)
 		{
-			cumul -= dy;
+			cumul -= map->dy;
 			map->point_one.x += xinc;
 		}
 		fill_pix(data, map->point_one.x, map->point_one.y, map->altitude_z);
@@ -34,20 +34,20 @@ void	draw_vertical(int dy, int dx, int *data, int yinc, int xinc, t_map *map)
 	}
 }
 
-void	draw_horizontal(int dx, int dy, int *data, int yinc, int xinc, t_map *map)
+void	draw_horizontal(int *data, int yinc, int xinc, t_map *map)
 {
 	int i;
 	int cumul;
 
 	i = 1;
-	cumul = dx / 2;
-	while (i <= dx)
+	cumul = map->dx / 2;
+	while (i <= map->dx)
 	{
 		map->point_one.x += xinc;
-		cumul += dy;
-		if (cumul >= dx)
+		cumul += map->dy;
+		if (cumul >= map->dx)
 		{
-			cumul -= dx;
+			cumul -= map->dx;
 			map->point_one.y += yinc;
 		}
 		fill_pix(data, map->point_one.x, map->point_one.y, map->altitude_z);
@@ -65,20 +65,18 @@ int pos_or_neg(int i)
 
 void	draw_line(t_map *map, int *data)
 {
-	int dx;
-	int dy;
 	int xinc;
 	int yinc;
 
-	dx = map->point_two.x - map->point_one.x;
-	dy = map->point_two.y - map->point_one.y;
-	xinc = pos_or_neg(dx);
-	yinc = pos_or_neg(dy);
-	dx = ft_absolute(dx);
-	dy = ft_absolute(dy);
+	map->dx = map->point_two.x - map->point_one.x;
+	map->dy = map->point_two.y - map->point_one.y;
+	xinc = pos_or_neg(map->dx);
+	yinc = pos_or_neg(map->dy);
+	map->dx = ft_absolute(map->dx);
+	map->dy = ft_absolute(map->dy);
 	fill_pix(data, map->point_one.x, map->point_one.y, map->altitude_z);
-	if (dx > dy)
-		draw_horizontal(dx, dy, data, yinc, xinc, map);
+	if (map->dx > map->dy)
+		draw_horizontal(data, yinc, xinc, map);
 	else
-		draw_vertical(dy, dx, data, yinc, xinc, map);
+		draw_vertical(data, yinc, xinc, map);
 }
