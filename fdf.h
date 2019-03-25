@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/25 14:20:22 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/25 16:42:21 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char			**check_and_read(char *arg, t_map *map);
 
 void			count_nb_lines(char *arg, t_map *map);
 
-void			atoi_tab(char **tabchar, t_map *map);
+int				atoi_tab(char **tabchar, t_map *map);
 
 int				countwords(char *s, char c);
 
@@ -97,4 +97,18 @@ void		trace_par_or_hor(t_map *map);
 void    destroy_and_clear(t_map *map);
 
 void    init_map(t_map *map);
+
+t_map	*parse(char *argv);
+
+int			check_line(char *line);
+
+int			check_fdf(char *argv);
+
+void		error1(void);
+
+char		**error2(char *line);
+
+int			error3(void);
+
+void		del_tab(char **tab, int len);
 #endif

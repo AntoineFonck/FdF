@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 13:16:29 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/25 15:03:03 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/25 16:42:33 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,27 @@ char	**check_and_read(char *arg, t_map *map)
 	return (tab);
 }
 
-void	error3(void)
+int		error3(void)
 {
 	ft_putstr("problem with map format, aborting...\n");
-	exit(-1);
+	return (-1);
+}
+
+void	del_tab(char **tab, int len)
+{
+	int i;
+
+	i = 0;
+	while (i < len)
+	{
+		ft_memdel((void **)&tab[i]);
+		i++;
+	}
+	ft_memdel((void **)&tab);
 	return ;
 }
 
-void	atoi_tab(char **tabchar, t_map *map)
+int		atoi_tab(char **tabchar, t_map *map)
 {
 	int		i;
 	int		j;
@@ -109,7 +122,7 @@ void	atoi_tab(char **tabchar, t_map *map)
 
 	map->w_max = 0;
 	if ((map->tab = (int **)malloc(sizeof(int*) * map->h_max)) == NULL)
-		return ;
+		return (-1);
 	i = -1;
 	map->w_max = countwords(tabchar[i + 1], ' ');
 	while (++i < map->h_max)
@@ -117,17 +130,15 @@ void	atoi_tab(char **tabchar, t_map *map)
 		if (map->w_max != (map->w_max = countwords(tabchar[i], ' ')))
 			return (error3());
 		if ((map->tab[i] = (int *)malloc(sizeof(int) * (map->w_max))) == NULL)
-			return ;
+			return (-1);
 		if ((tmp = ft_strsplit(tabchar[i], ' ')) == NULL)
-			return ;
+			return (-1);
 		j = -1;
 		while (++j < map->w_max)
-		{
 			map->tab[i][j] = ft_atoi(tmp[j]);
-			ft_memdel((void **)&tmp[j]);
-		}
-		ft_memdel((void **)&tmp);
+		del_tab(tmp, map->w_max);
 	}
+	return (0);
 }
 
 int		countwords(char *s, char c)
@@ -148,4 +159,39 @@ int		countwords(char *s, char c)
 		i++;
 	}
 	return (nbwords);
+}
+
+int		check_fdf(char *argv)
+{
+	int i;
+
+	i = ft_strlen(argv) - 1;
+	if (argv[i--] != 'f')
+		return (0);
+	if (argv[i--] != 'd')
+		return (0);
+	if (argv[i--] != 'f')
+		return (0);
+	if (argv[i--] != '.')
+		return (0);
+	return (1);
+}
+
+t_map	*parse(char *argv)
+{
+	t_map	*map;
+	char	**tabchar;
+	int		i;
+
+	if ((check_fdf(argv)) == 0)
+		return (NULL);
+	if ((map = (t_map *)malloc(sizeof(t_map))) == NULL)
+		return (NULL);
+	if ((tabchar = check_and_read(argv, map)) == NULL)
+		return (NULL);
+	if ((atoi_tab(tabchar, map)) == -1)
+		return (NULL);
+	i = 0;
+	del_tab(tabchar, map->h_max);
+	return (map);
 }
