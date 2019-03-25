@@ -6,12 +6,25 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 13:16:29 by afonck            #+#    #+#             */
-/*   Updated: 2019/02/27 13:46:30 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/25 13:14:45 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
+
+int		check_line(char *line)
+{
+	size_t i;
+
+	i = 0;
+	while ((ft_isdigit(line[i]) || line[i] == '-' || line[i] == ' ') && line[i])
+		i++;
+	if (i < (ft_strlen(line)))
+		return (-1);
+	else
+		return (0);
+}
 
 void	count_nb_lines(char *arg, t_map *map)
 {
@@ -30,6 +43,13 @@ void	count_nb_lines(char *arg, t_map *map)
 	while (get_next_line(fd, &line) > 0)
 	{
 		nblines++;
+		//if (!ft_isdigit(line[0]) || line[0] != '-')
+		if (check_line(line) == -1)
+		{
+			printf("problem with input in the file to read\n");
+			ft_memdel((void **)&line);
+			exit(-1);
+		}
 		ft_memdel((void **)&line);
 	}
 	ft_memdel((void **)&line);
@@ -50,6 +70,8 @@ char	**check_and_read(char *arg, t_map *map)
 
 	i = 0;
 	count_nb_lines(arg, map);
+	if (map->h_max == 0)
+		return (NULL);
 	if ((tab = (char **)malloc(sizeof(*tab) * (map->h_max))) == NULL)
 	{
 		ft_putstr("problem with checkandread malloc for tab\n");
@@ -91,13 +113,16 @@ void	atoi_tab(char **tabchar, t_map *map)
 		return ;
 	}
 	i = 0;
+	map->w_max = countwords(tabchar[i], ' ');
 	while (i < map->h_max)
 	{
 		temp = countwords(tabchar[i], ' ');
-		if (temp > map->w_max)
+		if (temp != map->w_max)
 		{
 			printf("temp is equal to %d for i=%d\n", temp, i);
-			map->w_max = temp;
+			printf("problem with map format, exit()\n");
+			exit(-1);
+			//map->w_max = temp;
 		}
 		if ((map->tab[i] = (int *)malloc(sizeof(int) * (temp))) == NULL)
 		{
