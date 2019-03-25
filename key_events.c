@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:25:02 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/25 14:25:45 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/25 14:35:30 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,6 @@ int close_window(t_map *map)
 int change_view(t_map *map)
 {
 	destroy_and_clear(map);
-	/*
-	mlx_destroy_image(map->mlx_ptr, map->img.img_ptr);
-	mlx_clear_window(map->mlx_ptr, map->win_ptr);
-	map->img.img_ptr = mlx_new_image(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr, &map->img.bpp, &map->img.size_l, &map->img.endian);
-	*/
 	trace_par_or_hor(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	ft_putnbr(map->change_alt);
@@ -36,12 +30,6 @@ int change_view(t_map *map)
 int	altitude(int key, t_map *map)
 {
 	destroy_and_clear(map);
-	/*
-	mlx_destroy_image(map->mlx_ptr, map->img.img_ptr);
-	mlx_clear_window(map->mlx_ptr, map->win_ptr);
-	map->img.img_ptr = mlx_new_image(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr, &map->img.bpp, &map->img.size_l, &map->img.endian);
-	*/
 	if (key == 24)
 		map->change_alt += 0.1;
 	else if (key == 27)
@@ -55,12 +43,6 @@ int	altitude(int key, t_map *map)
 int	zoom(int key, t_map *map)
 {
 	destroy_and_clear(map);
-	/*
-	mlx_destroy_image(map->mlx_ptr, map->img.img_ptr);
-	mlx_clear_window(map->mlx_ptr, map->win_ptr);
-	map->img.img_ptr = mlx_new_image(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr, &map->img.bpp, &map->img.size_l, &map->img.endian);
-	*/
 	if (key == 13)// && map->const1 < 1)// && map->const2 < 1)
 	{
 			map->change_alt += map->change_alt / map->offset;
@@ -80,12 +62,6 @@ int	zoom(int key, t_map *map)
 int move(int key, t_map *map)
 {
 	destroy_and_clear(map);
-	/*
-	mlx_destroy_image(map->mlx_ptr, map->img.img_ptr);
-	mlx_clear_window(map->mlx_ptr, map->win_ptr);
-	map->img.img_ptr = mlx_new_image(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr, &map->img.bpp, &map->img.size_l, &map->img.endian);
-	*/
 	if (key == 126) // UP
 	{
 		map->start_point.y -= 10;
@@ -116,32 +92,10 @@ int move(int key, t_map *map)
 	return(1);
 }
 
-void reset_map(t_map *map)
-{
-	//destroy_and_clear(map);
-	init_map(map);
-	/*
-	map->offset = 2;
-	map->change_alt = 1;
-	map->const1 = 1;
-	map->const2 = 1;
-	map->start_point.x = WIN_WIDTH / 2;
-	map->start_point.y = 0;
-	map->view = 1;
-	*/
-}
-
 int	reset(t_map *map)
 {
 	destroy_and_clear(map);
-	/*
-	mlx_destroy_image(map->mlx_ptr, map->img.img_ptr);
-	mlx_clear_window(map->mlx_ptr, map->win_ptr);
-	map->img.img_ptr = mlx_new_image(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr, &map->img.bpp, &map->img.size_l, &map->img.endian);
-	*/
 	init_map(map);
-	//reset_map(map);
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	return(1);
