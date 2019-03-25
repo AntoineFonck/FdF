@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 12:30:57 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/25 16:31:42 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/25 18:07:46 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,14 @@
 
 int		main(int argc, char **argv)
 {
-	//t_mlx	mlx;
 	t_map	*map;
-	char	**tabchar;
 	int	i;
 
 	i = 0;
 	if (argc != 2)
 		return (1);
-	if ((map = malloc(sizeof(t_map))) == NULL)
+	if (((map = parse(argv[1]))) == NULL)
 		return (1);
-	//if ((mlx.img = malloc(sizeof(t_img))) == NULL)
-	//	return (1);
-	//if ((map->img = malloc(sizeof(t_img))) == NULL)
-	//	return (1);
-	if ((tabchar = check_and_read(argv[1], map)) == NULL)
-	{
-		ft_putstr("check and read DOES NOT work\n");
-		return (1);
-	}
-	atoi_tab(tabchar, map);
 	map->mlx_ptr = mlx_init();
 	map->win_ptr = mlx_new_window(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "FdF");
 	map->img.img_ptr = mlx_new_image(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);

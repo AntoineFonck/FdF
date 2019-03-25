@@ -6,31 +6,12 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 13:16:29 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/25 15:03:03 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/25 16:49:39 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
-
-int		check_line(char *line)
-{
-	size_t i;
-
-	i = 0;
-	while ((ft_isdigit(line[i]) || line[i] == '-' || line[i] == ' ') && line[i])
-		i++;
-	if (i < (ft_strlen(line)))
-		return (-1);
-	else
-		return (0);
-}
-
-void	error1(void)
-{
-	ft_putstr("Error while counting number of lines, aborting...\n");
-	return ;
-}
 
 void	count_nb_lines(char *arg, t_map *map)
 {
@@ -58,12 +39,6 @@ void	count_nb_lines(char *arg, t_map *map)
 	if ((close(fd)) == -1)
 		return (error1());
 	map->h_max = nblines;
-}
-
-char	**error2(char *line)
-{
-	ft_memdel((void **)&line);
-	return (NULL);
 }
 
 char	**check_and_read(char *arg, t_map *map)
@@ -94,14 +69,7 @@ char	**check_and_read(char *arg, t_map *map)
 	return (tab);
 }
 
-void	error3(void)
-{
-	ft_putstr("problem with map format, aborting...\n");
-	exit(-1);
-	return ;
-}
-
-void	atoi_tab(char **tabchar, t_map *map)
+int		atoi_tab(char **tabchar, t_map *map)
 {
 	int		i;
 	int		j;
@@ -109,7 +77,7 @@ void	atoi_tab(char **tabchar, t_map *map)
 
 	map->w_max = 0;
 	if ((map->tab = (int **)malloc(sizeof(int*) * map->h_max)) == NULL)
-		return ;
+		return (-1);
 	i = -1;
 	map->w_max = countwords(tabchar[i + 1], ' ');
 	while (++i < map->h_max)
@@ -117,17 +85,15 @@ void	atoi_tab(char **tabchar, t_map *map)
 		if (map->w_max != (map->w_max = countwords(tabchar[i], ' ')))
 			return (error3());
 		if ((map->tab[i] = (int *)malloc(sizeof(int) * (map->w_max))) == NULL)
-			return ;
+			return (-1);
 		if ((tmp = ft_strsplit(tabchar[i], ' ')) == NULL)
-			return ;
+			return (-1);
 		j = -1;
 		while (++j < map->w_max)
-		{
 			map->tab[i][j] = ft_atoi(tmp[j]);
-			ft_memdel((void **)&tmp[j]);
-		}
-		ft_memdel((void **)&tmp);
+		del_tab(tmp, map->w_max);
 	}
+	return (0);
 }
 
 int		countwords(char *s, char c)
@@ -148,4 +114,23 @@ int		countwords(char *s, char c)
 		i++;
 	}
 	return (nbwords);
+}
+
+t_map	*parse(char *argv)
+{
+	t_map	*map;
+	char	**tabchar;
+	int		i;
+
+	if ((check_fdf(argv)) == 0)
+		return (NULL);
+	if ((map = (t_map *)malloc(sizeof(t_map))) == NULL)
+		return (NULL);
+	if ((tabchar = check_and_read(argv, map)) == NULL)
+		return (NULL);
+	if ((atoi_tab(tabchar, map)) == -1)
+		return (NULL);
+	i = 0;
+	del_tab(tabchar, map->h_max);
+	return (map);
 }
