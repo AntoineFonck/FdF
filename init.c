@@ -20,6 +20,7 @@ void	init_map(t_map *map)
 	map->const2 = 1;
 	map->start_point.x = WIN_WIDTH / 2;
 	map->start_point.y = 0;
+	map->start_point.h = WIN_HEIGHT / 2;
 	map->view = 1;
 	map->gamma = 0;
 }

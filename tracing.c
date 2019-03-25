@@ -100,7 +100,7 @@ void    trace_horizontal_par(t_map *map, int *data)
 	int i;
 	int j;
 
-	y = map->start_point.y;
+	y = map->start_point.h;
 	i = -1;
 	while (++i < map->h_max)
 	{
@@ -135,7 +135,7 @@ void    trace_vertical_par(t_map *map, int *data)
 	j = -1;
 	while (++j < map->w_max)
 	{
-		y = map->start_point.y;
+		y = map->start_point.h;
 		i = 0;
 		while (i < map->h_max)
 		{

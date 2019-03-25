@@ -47,11 +47,15 @@ int	zoom(int key, t_map *map)
 	{
 		map->change_alt += map->change_alt / map->offset;
 		map->offset++;
+		map->start_point.x -= map->w_max / 2;
+		map->start_point.y -= map->h_max / 2;
 	}
 	else if ((key == 1 || key == SCROLL_DOWN) && map->offset > 1)//&& map->const1 > 0.5)// && map->const2 > 0.5)
 	{
 		map->change_alt -= map->change_alt / map->offset;
 		map->offset--;
+		map->start_point.x += map->w_max / 2;
+		map->start_point.y += map->h_max / 2;
 	}
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
@@ -65,12 +69,14 @@ int move(int key, t_map *map)
 	if (key == 126) // UP
 	{
 		map->start_point.y -= 10;
+		map->start_point.h -= 10;
 		if (map->view == 1)
 			map->start_point.x -= 10;
 	}
 	else if (key == 125) // DOWN
 	{
 		map->start_point.y += 10;
+		map->start_point.h += 10;
 		if (map->view == 1)
 			map->start_point.x += 10;
 	}

@@ -44,6 +44,7 @@ typedef struct		s_start_point
 {
 	int				x;
 	int				y;
+	int				h;
 }					t_start_point;
 
 typedef struct		s_map
