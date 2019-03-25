@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/25 15:00:18 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/25 17:07:33 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct		s_map
 	int				menu;
 	int				dx;
 	int				dy;
-	double			degree;
+	double			gamma;
 	double			offset;
 	double			const1;
 	double			const2;
@@ -100,4 +100,13 @@ void				trace_par_or_hor(t_map *map);
 void				destroy_and_clear(t_map *map);
 
 void				init_map(t_map *map);
+
+void				keys_and_mouse(t_map *map);
+
+int     key_press(int key, t_map *map);
+int     key_release(int key, t_map *map);
+int     mouse_press(int press, int x, int y, void *param);
+int     mouse_release(int press/*, int x, int y*/, t_map *map);
+int     mouse_moving(int x, int y, t_map *map);
+int     expose(t_map *map);
 #endif

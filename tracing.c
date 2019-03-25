@@ -6,11 +6,22 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 12:14:29 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/25 13:30:26 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/25 18:05:39 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void     rotate_z(int *x, int *y, double gamma)
+{
+	int previous_x;
+	int previous_y;
+
+	previous_x = *x;
+	previous_y = *y;
+	*x = previous_x * cos(gamma) - previous_y * sin(gamma);
+	*y = previous_x * sin(gamma) + previous_y * cos(gamma);
+}
 
 void        trace_horizontal(t_map *map, int *data)
 {
@@ -30,6 +41,7 @@ void        trace_horizontal(t_map *map, int *data)
 			map->point_one.x = (map->const1 * x - map->const2 * y);
 			map->point_one.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
 			//fill_pix(data, map->point_one.x, map->point_one.y, 0xFFFFFF);
+			//rotate_z(&(map->point_one.x), &(map->point_one.y), map->gamma);
 			x += map->offset;
 			map->point_two.x = (map->const1 * x - map->const2 * y);
 			j++;
@@ -37,6 +49,7 @@ void        trace_horizontal(t_map *map, int *data)
 			{
 				map->point_two.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
 				map->altitude_z = map->tab[i][j];
+				//rotate_z(&(map->point_two.x), &(map->point_two.y), map->gamma);
 				draw_line(map, data);
 			}
 		}
@@ -62,6 +75,7 @@ void trace_vertical(t_map *map, int *data)
 		{
 			map->point_one.x = (map->const1 * x - map->const2 * y);
 			map->point_one.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
+			//rotate_z(&(map->point_one.x), &(map->point_one.y), map->gamma);
 			//fill_pix(data, map->point_one.x, map->point_one.y, 0xFFFFFF);
 			y += map->offset;
 			map->point_two.x = (map->const1 * x - map->const2 * y);
@@ -69,6 +83,7 @@ void trace_vertical(t_map *map, int *data)
 			if (i < map->h_max)
 			{
 				map->point_two.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
+				//rotate_z(&(map->point_two.x), &(map->point_two.y), map->gamma);
 				map->altitude_z = map->tab[i][j];
 				draw_line(map, data);
 			}

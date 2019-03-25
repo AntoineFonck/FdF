@@ -6,12 +6,12 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:25:02 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/25 14:35:30 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/25 17:38:19 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+#include "keys_and_mouse.h"
 int close_window(t_map *map)
 {
 	mlx_destroy_window(map->mlx_ptr, map->win_ptr);
@@ -43,15 +43,15 @@ int	altitude(int key, t_map *map)
 int	zoom(int key, t_map *map)
 {
 	destroy_and_clear(map);
-	if (key == 13)// && map->const1 < 1)// && map->const2 < 1)
+	if (key == 13 || key == SCROLL_UP)// && map->const1 < 1)// && map->const2 < 1)
 	{
-			map->change_alt += map->change_alt / map->offset;
-			map->offset++;
+		map->change_alt += map->change_alt / map->offset;
+		map->offset++;
 	}
-	else if (key == 1 && map->offset > 1)//&& map->const1 > 0.5)// && map->const2 > 0.5)
+	else if ((key == 1 || key == SCROLL_DOWN) && map->offset > 1)//&& map->const1 > 0.5)// && map->const2 > 0.5)
 	{
-			map->change_alt -= map->change_alt / map->offset;
-			map->offset--;
+		map->change_alt -= map->change_alt / map->offset;
+		map->offset--;
 	}
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
@@ -101,6 +101,22 @@ int	reset(t_map *map)
 	return(1);
 }
 
+int	rotate(int key, t_map *map)
+{
+	destroy_and_clear(map);
+	if (key == 88)
+	{
+		map->gamma += 0.2;
+	}
+	else if (key == 87)
+	{
+		map->gamma -= 0.2;
+	}
+	trace_all(map);
+	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
+	ft_putnbr(map->gamma);
+	return(1);
+}
 int all(int key, t_map *map)
 {
 	if (key == 24 || key == 27)
@@ -113,6 +129,8 @@ int all(int key, t_map *map)
 		close_window(map);
 	else if (key == 8)
 		change_view(map);
+	else if (key == 88 || key == 87)
+		rotate(key, map);
 	else if (key == 15)
 		reset(map);
 	return (0);

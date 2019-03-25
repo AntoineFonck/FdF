@@ -6,7 +6,7 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 12:18:34 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/25 14:27:40 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/25 17:08:43 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_map(t_map *map)
 	map->start_point.x = WIN_WIDTH / 2;
 	map->start_point.y = 0;
 	map->view = 1;
+	map->gamma = 0;
 }
 
 void	destroy_and_clear(t_map *map)
