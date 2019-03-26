@@ -49,8 +49,6 @@ int			get_next_line(const int fd, char **line)
 		*line = ft_line_append(*line, buf, BUFF_SIZE);
 		ret = read(fd, buf, BUFF_SIZE);
 		buf[ret] = '\0';
-		if (buf[ret - 1] == '\0')
-			return (-1);
 		if (ret == 0)
 			return ((**line) ? 1 : 0);
 	}

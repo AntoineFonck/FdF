@@ -34,11 +34,8 @@ void	count_nb_lines(char *arg, t_map *map)
 		}
 		ft_memdel((void **)&line);
 	}
-	if (ret == 0 && *line)
-	{
-		printf("%c\n", *line);
+	if (ret == 0)
 		ft_memdel((void **)&line);
-	}
 	if ((close(fd)) == -1)
 		return (error1());
 	map->h_max = nblines;
