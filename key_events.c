@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:25:02 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/25 17:38:19 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/26 13:40:21 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int change_view(t_map *map)
 	trace_par_or_hor(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	ft_putnbr(map->change_alt);
+	//	menu(map);
 	return(1);
 }
 
@@ -37,6 +38,7 @@ int	altitude(int key, t_map *map)
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	ft_putnbr(map->change_alt);
+	//	menu(map);
 	return(1);
 }
 
@@ -49,6 +51,7 @@ int	zoom(int key, t_map *map)
 		map->offset++;
 		map->start_point.x -= map->w_max / 2;
 		map->start_point.y -= map->h_max / 2;
+		map->start_point.h -= map->h_max / 2;
 	}
 	else if ((key == 1 || key == SCROLL_DOWN) && map->offset > 1)//&& map->const1 > 0.5)// && map->const2 > 0.5)
 	{
@@ -56,10 +59,12 @@ int	zoom(int key, t_map *map)
 		map->offset--;
 		map->start_point.x += map->w_max / 2;
 		map->start_point.y += map->h_max / 2;
+		map->start_point.h += map->h_max / 2;
 	}
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	ft_putnbr(map->offset);
+	//	menu(map);
 	return(1);
 }
 
@@ -95,6 +100,7 @@ int move(int key, t_map *map)
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	ft_putnbr(map->change_alt);
+	//	menu(map);
 	return(1);
 }
 
@@ -104,6 +110,7 @@ int	reset(t_map *map)
 	init_map(map);
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
+	//	menu(map);
 	return(1);
 }
 
@@ -121,6 +128,7 @@ int	rotate(int key, t_map *map)
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	ft_putnbr(map->gamma);
+	//	menu(map);
 	return(1);
 }
 int all(int key, t_map *map)
@@ -139,5 +147,6 @@ int all(int key, t_map *map)
 		rotate(key, map);
 	else if (key == 15)
 		reset(map);
+	menu(map);
 	return (0);
 }

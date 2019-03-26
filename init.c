@@ -6,7 +6,7 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 12:18:34 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/25 17:08:43 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/26 13:09:09 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_map(t_map *map)
 	map->const2 = 1;
 	map->start_point.x = WIN_WIDTH / 2;
 	map->start_point.y = 0;
-	map->start_point.h = WIN_HEIGHT / 2;
+	map->start_point.h = WIN_HEIGHT / 2 - map->h_max / 2;
 	map->view = 1;
 	map->gamma = 0;
 }

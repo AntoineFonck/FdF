@@ -6,7 +6,7 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 12:14:29 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/25 18:05:39 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/26 10:59:06 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void    trace_horizontal_par(t_map *map, int *data)
 	i = -1;
 	while (++i < map->h_max)
 	{
-		x = map->start_point.x;
+		x = map->start_point.x - map->w_max / 2;
 		j = 0;
 		while (j < map->w_max)
 		{
@@ -131,7 +131,7 @@ void    trace_vertical_par(t_map *map, int *data)
 	int i;
 	int j;
 
-	x = map->start_point.x;
+	x = map->start_point.x - map->w_max / 2;
 	j = -1;
 	while (++j < map->w_max)
 	{
