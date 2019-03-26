@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/26 17:10:48 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/26 17:58:59 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ typedef struct		s_img
 	int				endian;
 }					t_img;
 /*
-typedef struct	s_mlx
-{
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_img		img;
-}				t_mlx;
-*/
+   typedef struct	s_mlx
+   {
+   void		*mlx_ptr;
+   void		*win_ptr;
+   t_img		img;
+   }				t_mlx;
+   */
 typedef struct		s_screenpoint
 {
 	int				x;
@@ -47,6 +47,15 @@ typedef struct		s_start_point
 	int				y;
 	int				h;
 }					t_start_point;
+
+typedef struct                  s_mouse
+{
+	int				pressed;
+	int				x;
+	int				y;
+	int				previous_x;
+	int				previous_y;
+}								t_mouse;
 
 typedef struct		s_map
 {
@@ -69,6 +78,7 @@ typedef struct		s_map
 	t_start_point	start_point;
 	t_screenpoint	point_one;
 	t_screenpoint	point_two;
+	t_mouse			mouse;
 }					t_map;
 
 char				**check_and_read(char *arg, t_map *map);
