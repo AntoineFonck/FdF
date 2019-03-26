@@ -19,7 +19,7 @@ void    keys_and_mouse(t_map *map)
 	//mlx_hook(map->win_ptr, 3, 0, key_release, map);
 	mlx_hook(map->win_ptr, 4, 0, mouse_press, map);
 	mlx_hook(map->win_ptr, 5, 0, mouse_release, map);
-	//mlx_hook(map->win_ptr, 6, 0, mouse_moving, map);
+	mlx_hook(map->win_ptr, 6, 0, mouse_moving, map);
 	//mlx_hook(map->win_ptr, 12, 0, expose, map);
 	//mlx_hook(map->win_ptr, 17, 0, close, map);
 }
@@ -37,6 +37,8 @@ int       key_press(int key, void *param)
 	else if (key == MAIN_PLUS || key == NUM_PLUS ||
 			key == MAIN_MIN || key == NUM_MIN)
 		altitude(key, map);
+	else if (key == N || key == M) // can change this again
+		rotate(key, map);
 	else if (key == C)
 		change_view(map);
 	else if (key == ESC)

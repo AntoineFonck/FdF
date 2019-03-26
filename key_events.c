@@ -52,6 +52,8 @@ void	zoom(int key, t_map *map)
 		map->start_point.x -= map->w_max / 2;
 		map->start_point.y -= map->h_max / 2;
 		map->start_point.h -= map->h_max / 2;
+		map->start_point.ycenter -= map->h_max / 2;
+		map->start_point.xcenter -= map->w_max / 2;
 	}
 	else if ((key == S || key == SCROLL_DOWN) && map->offset > 1)//&& map->const1 > 0.5)// && map->const2 > 0.5)
 	{
@@ -60,6 +62,8 @@ void	zoom(int key, t_map *map)
 		map->start_point.x += map->w_max / 2;
 		map->start_point.y += map->h_max / 2;
 		map->start_point.h += map->h_max / 2;
+		map->start_point.ycenter += map->h_max / 2;
+		map->start_point.xcenter += map->w_max / 2;
 	}
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
@@ -74,27 +78,47 @@ void  move(int key, t_map *map)
 	{
 		map->start_point.y -= 10;
 		map->start_point.h -= 10;
+		map->start_point.ycenter -= 10;
+		map->start_point.xcenter -= 10;
 		if (map->view == 1)
+		{
 			map->start_point.x -= 10;
+			//map->start_point.xcenter -= 10;
+		}
 	}
 	else if (key == ARROW_DOWN) // DOWN
 	{
 		map->start_point.y += 10;
 		map->start_point.h += 10;
+		map->start_point.ycenter += 10;
+			map->start_point.xcenter += 10;
 		if (map->view == 1)
+		{
 			map->start_point.x += 10;
+			//map->start_point.xcenter += 10;
+		}
 	}
 	else if (key == ARROW_LEFT) // LEFT
 	{
 		map->start_point.x -= 10;
+		map->start_point.xcenter -= 10;
+			map->start_point.ycenter += 10;
 		if (map->view == 1)
+		{
 			map->start_point.y += 10;
+			//map->start_point.ycenter += 10;
+		}
 	}
 	else if (key == ARROW_RIGHT) // RIGHT
 	{
 		map->start_point.x += 10;
+		map->start_point.xcenter += 10;
+			map->start_point.ycenter -= 10;
 		if (map->view == 1)
+		{
 			map->start_point.y -= 10;
+			//map->start_point.ycenter -= 10;
+		}
 	}
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
@@ -111,22 +135,21 @@ void	reset(t_map *map)
 		menu(map);
 }
 
-int	rotate(int key, t_map *map)
+void	rotate(int key, t_map *map)
 {
 	destroy_and_clear(map);
-	if (key == 88)
+	if (key == N)
 	{
-		map->gamma += 0.2;
+		map->gamma += 0.1;
 	}
-	else if (key == 87)
+	else if (key == M)
 	{
-		map->gamma -= 0.2;
+		map->gamma -= 0.1;
 	}
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	ft_putnbr(map->gamma);
 		menu(map);
-	return(1);
 }
 /*
 int all(int key, t_map *map)

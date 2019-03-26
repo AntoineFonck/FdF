@@ -36,9 +36,11 @@
 # define S 1
 # define C 8
 # define W 13
-# define R 15
+# define R 15 
 # define MAIN_PLUS 24
 # define MAIN_MIN 27
+# define N 45
+# define M 46
 # define ESC 53
 
 /*
