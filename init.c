@@ -21,6 +21,8 @@ void	init_map(t_map *map)
 	map->start_point.x = WIN_WIDTH / 2;
 	map->start_point.y = 0;
 	map->start_point.h = WIN_HEIGHT / 2 - map->h_max / 2;
+	map->start_point.xcenter = map->w_max / 2 + map->start_point.x;
+	map->start_point.ycenter = map->h_max / 2 + map->start_point.h;
 	map->view = 1;
 	map->gamma = 0;
 }

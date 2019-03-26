@@ -46,6 +46,8 @@ typedef struct		s_start_point
 	int				x;
 	int				y;
 	int				h;
+	int				xcenter;
+	int				ycenter;
 }					t_start_point;
 
 typedef struct                  s_mouse
@@ -104,6 +106,8 @@ void					reset(t_map *map);
 void					change_view(t_map *map);
 
 int					all(int key, t_map *map);
+
+void					rotate(int key, t_map *map);
 
 void				trace_horizontal(t_map *map, int *data);
 
