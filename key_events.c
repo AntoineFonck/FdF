@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:25:02 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/26 17:10:55 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/26 17:43:04 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 void close_window(t_map *map)
 {
 	mlx_destroy_window(map->mlx_ptr, map->win_ptr);
+	del_int_tab(map->tab, map->h_max);
 	exit(0);
 }
 

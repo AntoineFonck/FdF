@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 16:20:42 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/25 16:50:00 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/26 16:53:28 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,20 @@ int             check_fdf(char *argv)
 }
 
 void    del_tab(char **tab, int len)
+{
+	int i;
+
+	i = 0;
+	while (i < len)
+	{
+		ft_memdel((void **)&tab[i]);
+		i++;
+	}
+	ft_memdel((void **)&tab);
+	return ;
+}
+
+void	del_int_tab(int **tab, int len)
 {
 	int i;
 

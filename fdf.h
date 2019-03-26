@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/26 17:58:59 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/26 18:02:05 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,4 +150,6 @@ char		**error2(char *line);
 int			error3(void);
 
 void		del_tab(char **tab, int len);
+
+void		del_int_tab(int **tab, int len);
 #endif
