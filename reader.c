@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 13:16:29 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/25 16:49:39 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/26 17:29:29 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,15 @@
 void	count_nb_lines(char *arg, t_map *map)
 {
 	int		nblines;
-	int		i;
 	char	*line;
 	int		fd;
+	int		ret;
 
-	if ((fd = open(arg, O_RDONLY)) == -1)
-		return (error1());
 	nblines = 0;
 	map->h_max = 0;
-	i = 0;
-	while (get_next_line(fd, &line) > 0)
+	if ((fd = open(arg, O_RDONLY)) == -1)
+		return (error1());
+	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		nblines++;
 		if (check_line(line) == -1)
@@ -35,7 +34,11 @@ void	count_nb_lines(char *arg, t_map *map)
 		}
 		ft_memdel((void **)&line);
 	}
-	ft_memdel((void **)&line);
+	if (ret == 0 && *line)
+	{
+		printf("%c\n", *line);
+		ft_memdel((void **)&line);
+	}
 	if ((close(fd)) == -1)
 		return (error1());
 	map->h_max = nblines;
@@ -120,17 +123,22 @@ t_map	*parse(char *argv)
 {
 	t_map	*map;
 	char	**tabchar;
-	int		i;
 
 	if ((check_fdf(argv)) == 0)
 		return (NULL);
 	if ((map = (t_map *)malloc(sizeof(t_map))) == NULL)
 		return (NULL);
 	if ((tabchar = check_and_read(argv, map)) == NULL)
+	{
+		ft_memdel((void **)&map);
 		return (NULL);
+	}
 	if ((atoi_tab(tabchar, map)) == -1)
+	{
+		del_tab(tabchar, map->h_max);
+		ft_memdel((void **)&map);
 		return (NULL);
-	i = 0;
+	}
 	del_tab(tabchar, map->h_max);
 	return (map);
 }
