@@ -6,7 +6,7 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 15:41:30 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/25 15:51:10 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/26 16:24:05 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,18 @@
 /*
 ** MAIN KEYBOARD
 */
+# define S 1
+# define C 8
+# define W 13
+# define R 15
 # define MAIN_PLUS 24
-# define MAIN_MINUS 27
+# define MAIN_MIN 27
 # define ESC 53
 
 /*
 ** NUMERIC KEYBOARD
 */
 # define NUM_PLUS 69
-# define NUM_MINUS 78
+# define NUM_MIN 78
 
 #endif

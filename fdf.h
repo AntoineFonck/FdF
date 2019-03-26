@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/26 16:38:03 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/26 17:43:24 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "./minilibx_macos/mlx.h"
 # include "./libft/libft.h"
 # include <math.h>
+# include "keys_and_mouse.h"
 # define WIN_WIDTH 1680
 # define WIN_HEIGHT 1050
 
@@ -80,9 +81,17 @@ int					countwords(char *s, char c);
 
 void				draw_line(t_map *map, int *data);
 
-int					altitude(int key, t_map *map);
+void					altitude(int key, t_map *map);
 
-int					zoom(int key, t_map *map);
+void					zoom(int key, t_map *map);
+
+void					move(int key, t_map *map);
+
+void					close_window(t_map *map);
+
+void					reset(t_map *map);
+
+void					change_view(t_map *map);
 
 int					all(int key, t_map *map);
 
@@ -104,15 +113,15 @@ void				init_map(t_map *map);
 
 void				keys_and_mouse(t_map *map);
 
-int     key_press(int key, t_map *map);
+int     key_press(int key, void *param);
 
-int     key_release(int key, t_map *map);
+int     key_release(int key, void *param);
 
 int     mouse_press(int press, int x, int y, void *param);
 
-int     mouse_release(int press/*, int x, int y*/, t_map *map);
+int     mouse_release(int press, int x, int y, void *param);
 
-int     mouse_moving(int x, int y, t_map *map);
+int     mouse_moving(int x, int y, void *param);
 
 int     expose(t_map *map);
 
