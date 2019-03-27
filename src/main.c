@@ -6,12 +6,11 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 12:30:57 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/26 17:42:27 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/27 13:45:22 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 int		main(int argc, char **argv)
 {
@@ -30,7 +29,6 @@ int		main(int argc, char **argv)
 	init_map(map);
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
-	//mlx_key_hook(map->win_ptr, &all, map);
 	keys_and_mouse(map);
 	menu(map);
 	mlx_loop(map->mlx_ptr);

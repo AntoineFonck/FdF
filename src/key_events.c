@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:25:02 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/26 17:43:04 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/27 13:45:19 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void change_view(t_map *map)
 	destroy_and_clear(map);
 	trace_par_or_hor(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
-	ft_putnbr(map->change_alt);
-		menu(map);
+	menu(map);
 }
 
 void	altitude(int key, t_map *map)
@@ -39,7 +38,7 @@ void	altitude(int key, t_map *map)
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	ft_putnbr(map->change_alt);
-		menu(map);
+	menu(map);
 }
 
 void	zoom(int key, t_map *map)
@@ -68,7 +67,7 @@ void	zoom(int key, t_map *map)
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	ft_putnbr(map->offset);
-		menu(map);
+	menu(map);
 }
 
 void  move(int key, t_map *map)
@@ -81,10 +80,7 @@ void  move(int key, t_map *map)
 		map->start_point.ycenter -= 10;
 		map->start_point.xcenter -= 10;
 		if (map->view == 1)
-		{
 			map->start_point.x -= 10;
-			//map->start_point.xcenter -= 10;
-		}
 	}
 	else if (key == ARROW_DOWN) // DOWN
 	{
@@ -93,10 +89,7 @@ void  move(int key, t_map *map)
 		map->start_point.ycenter += 10;
 			map->start_point.xcenter += 10;
 		if (map->view == 1)
-		{
 			map->start_point.x += 10;
-			//map->start_point.xcenter += 10;
-		}
 	}
 	else if (key == ARROW_LEFT) // LEFT
 	{
@@ -104,26 +97,19 @@ void  move(int key, t_map *map)
 		map->start_point.xcenter -= 10;
 			map->start_point.ycenter += 10;
 		if (map->view == 1)
-		{
 			map->start_point.y += 10;
-			//map->start_point.ycenter += 10;
-		}
 	}
 	else if (key == ARROW_RIGHT) // RIGHT
 	{
 		map->start_point.x += 10;
 		map->start_point.xcenter += 10;
-			map->start_point.ycenter -= 10;
+		map->start_point.ycenter -= 10;
 		if (map->view == 1)
-		{
 			map->start_point.y -= 10;
-			//map->start_point.ycenter -= 10;
-		}
 	}
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
-	ft_putnbr(map->change_alt);
-		menu(map);
+	menu(map);
 }
 
 void	reset(t_map *map)
@@ -132,7 +118,7 @@ void	reset(t_map *map)
 	init_map(map);
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
-		menu(map);
+	menu(map);
 }
 
 void	rotate(int key, t_map *map)
@@ -151,23 +137,3 @@ void	rotate(int key, t_map *map)
 	ft_putnbr(map->gamma);
 		menu(map);
 }
-/*
-int all(int key, t_map *map)
-{
-//	if (key == 24 || key == 27 || key == 69 || key == 78)
-//		altitude(key, map);
-	//else if (key == 13 || key == 1)
-	//	zoom(key, map);
-	//else if (key == 123 || key == 124 || key == 125 || key == 126)
-	//	move(key, map);
-//	else if (key == 53)
-//		close_window(map);
-//	else if (key == 8)
-//		change_view(map);
-	else if (key == 88 || key == 87)
-		rotate(key, map);
-//	else if (key == 15)
-//		reset(map);
-	return (0);
-}
-*/
