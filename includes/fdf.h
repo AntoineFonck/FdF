@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/27 14:49:34 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/27 15:06:22 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "libft.h"
 # include <math.h>
 # include "keys_and_mouse.h"
-# define WIN_WIDTH 1680
-# define WIN_HEIGHT 1050
+# define WIN_WIDTH 2560
+# define WIN_HEIGHT 1440
 
 typedef struct		s_img
 {

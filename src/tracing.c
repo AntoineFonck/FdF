@@ -6,13 +6,12 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 12:14:29 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/27 14:45:12 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/27 15:12:34 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-//has to go into other file or be deleted
 void	rotate_z(int *x, int *y, t_map *map)
 {
 	int previous_x;
@@ -33,11 +32,11 @@ void	trace_horizontal(t_map *map, int *data)
 
 	y = map->start_point.y;
 	i = -1;
-	while (++i < map->h_max/*y < (map->h_max * offset)*/)
+	while (++i < map->h_max)
 	{
 		x = map->start_point.x;
 		j = 0;
-		while (j < map->w_max/*x < (map->w_max * offset)*/)
+		while (j < map->w_max)
 		{
 			map->point_one.x = (map->const1 * x - map->const2 * y);
 			map->point_one.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
@@ -48,12 +47,11 @@ void	trace_horizontal(t_map *map, int *data)
 			{
 				map->point_two.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
 				map->altitude_z = map->tab[i][j];
-				rotate_z(&(map->point_two.x), &(map->point_two.y), map);
+				//rotate_z(&(map->point_two.x), &(map->point_two.y), map);
 				draw_line(map, data);
 			}
 		}
 		y += map->offset;
-		//i++;
 	}
 }
 
@@ -66,7 +64,7 @@ void	trace_vertical(t_map *map, int *data)
 
 	x = map->start_point.x;
 	j = -1;
-	while (++j < map->w_max/*y < (map->h_max * offset)*/)
+	while (++j < map->w_max)
 	{
 		y = map->start_point.y;
 		i = 0;
@@ -81,13 +79,12 @@ void	trace_vertical(t_map *map, int *data)
 			if (i < map->h_max)
 			{
 				map->point_two.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
-				rotate_z(&(map->point_two.x), &(map->point_two.y), map);
+				//rotate_z(&(map->point_two.x), &(map->point_two.y), map);
 				map->altitude_z = map->tab[i][j];
 				draw_line(map, data);
 			}
 		}
 		x += map->offset;
-		//j++;
 	}
 }
 
