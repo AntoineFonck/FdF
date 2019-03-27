@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/27 15:06:22 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/27 15:45:48 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ typedef struct		s_start_point
 	int				x;
 	int				y;
 	int				h;
-	int				xcenter;
-	int				ycenter;
+	int				xcenter;//used for rotate
+	int				ycenter;//used for rotate
 }					t_start_point;
 
 typedef struct		s_mouse
@@ -48,8 +48,8 @@ typedef struct		s_mouse
 	int				pressed;
 	int				x;
 	int				y;
-	int				previous_x;
-	int				previous_y;
+	int				previous_x;//used for rotate?
+	int				previous_y;//used for rotate?
 }					t_mouse;
 
 typedef struct		s_map
@@ -65,7 +65,7 @@ typedef struct		s_map
 	int				menu;
 	int				dx;
 	int				dy;
-	double			gamma;
+	double			gamma;//used for rotate
 	double			offset;
 	double			const1;
 	double			const2;
@@ -98,7 +98,7 @@ void				reset(t_map *map);
 
 void				change_view(t_map *map);
 
-void				rotate(int key, t_map *map);
+void				rotate(int key, t_map *map);//used for rotate
 
 void				trace_horizontal(t_map *map, int *data);
 
@@ -114,21 +114,11 @@ void				trace_par_or_hor(t_map *map);
 
 void				destroy_and_clear(t_map *map);
 
-void				init_map(t_map *map);
-
 void				keys_and_mouse(t_map *map);
 
 int					key_press(int key, void *param);
 
-int					key_release(int key, void *param);
-
 int					mouse_press(int press, int x, int y, void *param);
-
-int					mouse_release(int press, int x, int y, void *param);
-
-int					mouse_moving(int x, int y, void *param);
-
-int					expose(t_map *map);
 
 void				init_map(t_map *map);
 
