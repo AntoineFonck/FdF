@@ -6,12 +6,11 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 16:00:24 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/27 15:04:10 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/27 16:16:33 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "keys_and_mouse.h"
 
 void	keys_and_mouse(t_map *map)
 {
