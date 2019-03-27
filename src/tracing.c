@@ -6,7 +6,7 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 12:14:29 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/27 14:16:54 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/27 14:45:12 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	trace_horizontal(t_map *map, int *data)
 	int j;
 
 	y = map->start_point.y;
-	i = 0;
-	while (i < map->h_max/*y < (map->h_max * offset)*/)
+	i = -1;
+	while (++i < map->h_max/*y < (map->h_max * offset)*/)
 	{
 		x = map->start_point.x;
 		j = 0;
@@ -41,7 +41,6 @@ void	trace_horizontal(t_map *map, int *data)
 		{
 			map->point_one.x = (map->const1 * x - map->const2 * y);
 			map->point_one.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
-			//rotate_z(&(map->point_one.x), &(map->point_one.y), map);
 			x += map->offset;
 			map->point_two.x = (map->const1 * x - map->const2 * y);
 			j++;
@@ -54,7 +53,7 @@ void	trace_horizontal(t_map *map, int *data)
 			}
 		}
 		y += map->offset;
-		i++;
+		//i++;
 	}
 }
 
@@ -66,8 +65,8 @@ void	trace_vertical(t_map *map, int *data)
 	int j;
 
 	x = map->start_point.x;
-	j = 0;
-	while (j < map->w_max)
+	j = -1;
+	while (++j < map->w_max/*y < (map->h_max * offset)*/)
 	{
 		y = map->start_point.y;
 		i = 0;
@@ -88,7 +87,7 @@ void	trace_vertical(t_map *map, int *data)
 			}
 		}
 		x += map->offset;
-		j++;
+		//j++;
 	}
 }
 

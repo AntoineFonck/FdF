@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/27 14:07:25 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/27 14:46:39 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,6 @@ typedef struct		s_img
 	int				bpp;
 	int				endian;
 }					t_img;
-
-/*
-   typedef struct	s_mlx
-   {
-   void		*mlx_ptr;
-   void		*win_ptr;
-   t_img		img;
-   }				t_mlx;
-*/
 
 typedef struct		s_screenpoint
 {
@@ -106,8 +97,6 @@ void				close_window(t_map *map);
 void				reset(t_map *map);
 
 void				change_view(t_map *map);
-
-int					all(int key, t_map *map);
 
 void				rotate(int key, t_map *map);
 
