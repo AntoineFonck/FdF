@@ -6,12 +6,11 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:06:42 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/27 14:04:25 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/27 15:33:31 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 void	draw_vertical(int *data, int yinc, int xinc, t_map *map)
 {

@@ -6,20 +6,11 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 15:28:04 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/27 14:38:43 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/27 15:32:34 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "fdf.h"
-
-int		rgb_to_int(unsigned int red, unsigned int green, unsigned int blue)
-{
-	int color;
-
-	color = red << 16 | green << 8 | blue;
-	return (color);
-}
 
 void	choose_color(int *data, int x, int y, int z)
 {
