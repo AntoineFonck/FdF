@@ -6,14 +6,14 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/27 12:43:00 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/27 14:35:59 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# include "./minilibx_macos/mlx.h"
-# include "./libft/libft.h"
+# include "mlx.h"
+# include "libft.h"
 # include <math.h>
 # include "keys_and_mouse.h"
 # define WIN_WIDTH 1680
