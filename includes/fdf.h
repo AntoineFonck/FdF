@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/27 15:45:48 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/27 15:59:35 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,17 @@ typedef struct		s_map
 	t_mouse			mouse;
 }					t_map;
 
+/*
+** PARSING |||||||||||||||||||||||||||||
+*/
+
+t_map				*parse(char *argv);
+
 char				**check_and_read(char *arg, t_map *map);
+
+int					check_line(char *line);
+
+int					check_fdf(char *argv);
 
 void				count_nb_lines(char *arg, t_map *map);
 
@@ -84,7 +94,25 @@ int					atoi_tab(char **tabchar, t_map *map);
 
 int					countwords(char *s, char c);
 
+/*
+** DRAWING ||||||||||||||||||||||||||||
+*/
+
 void				draw_line(t_map *map, int *data);
+
+void				trace_par_or_hor(t_map *map);
+
+void				trace_horizontal(t_map *map, int *data);
+
+void				trace_vertical(t_map *map, int *data);
+
+void				trace_all(t_map *map);
+
+void				fill_pix(int *data, int x, int y, int z);
+
+/*
+** KEY EVENTS |||||||||||||||||||||||||
+*/
 
 void				altitude(int key, t_map *map);
 
@@ -100,17 +128,7 @@ void				change_view(t_map *map);
 
 void				rotate(int key, t_map *map);//used for rotate
 
-void				trace_horizontal(t_map *map, int *data);
-
-void				trace_vertical(t_map *map, int *data);
-
-void				fill_pix(int *data, int x, int y, int z);
-
 void				menu(t_map *map);
-
-void				trace_all(t_map *map);
-
-void				trace_par_or_hor(t_map *map);
 
 void				destroy_and_clear(t_map *map);
 
@@ -122,17 +140,19 @@ int					mouse_press(int press, int x, int y, void *param);
 
 void				init_map(t_map *map);
 
-t_map				*parse(char *argv);
-
-int					check_line(char *line);
-
-int					check_fdf(char *argv);
+/*
+** ERRORS |||||||||||||||||||||||||||||||||
+*/
 
 void				error1(void);
 
 char				**error2(char *line);
 
 int					error3(void);
+
+/*
+** FREEING |||||||||||||||||||||||||||||||
+*/
 
 void				del_tab(char **tab, int len);
 
