@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:25:02 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/27 14:44:12 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/27 16:03:14 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	close_window(t_map *map)
 void	change_view(t_map *map)
 {
 	destroy_and_clear(map);
-	trace_par_or_hor(map);
+	trace_par_or_iso(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	menu(map);
 }

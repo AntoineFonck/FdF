@@ -6,7 +6,7 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 12:14:29 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/27 15:12:34 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/27 16:02:57 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ void	trace_vertical_par(t_map *map, int *data)
 	}
 }
 
-void	trace_par_or_hor(t_map *map)
+void	trace_par_or_iso(t_map *map)
 {
 	if (map->view == 1)
 	{

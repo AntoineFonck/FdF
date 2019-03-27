@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/27 15:59:35 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/27 16:03:05 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int					countwords(char *s, char c);
 
 void				draw_line(t_map *map, int *data);
 
-void				trace_par_or_hor(t_map *map);
+void				trace_par_or_iso(t_map *map);
 
 void				trace_horizontal(t_map *map, int *data);
 
