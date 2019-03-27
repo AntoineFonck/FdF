@@ -6,17 +6,16 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 16:00:24 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/26 17:59:00 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/27 14:03:52 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "keys_and_mouse.h"
 
-void    keys_and_mouse(t_map *map)
+void	keys_and_mouse(t_map *map)
 {
 	mlx_hook(map->win_ptr, 2, 0, key_press, map);
-	//mlx_hook(map->win_ptr, 3, 0, key_release, map);
 	mlx_hook(map->win_ptr, 4, 0, mouse_press, map);
 	mlx_hook(map->win_ptr, 5, 0, mouse_release, map);
 	mlx_hook(map->win_ptr, 6, 0, mouse_moving, map);
@@ -24,7 +23,7 @@ void    keys_and_mouse(t_map *map)
 	//mlx_hook(map->win_ptr, 17, 0, close, map);
 }
 
-int       key_press(int key, void *param)
+int		key_press(int key, void *param)
 {
 	t_map *map;
 
@@ -37,7 +36,7 @@ int       key_press(int key, void *param)
 	else if (key == MAIN_PLUS || key == NUM_PLUS ||
 			key == MAIN_MIN || key == NUM_MIN)
 		altitude(key, map);
-	else if (key == N || key == M) // can change this again
+	else if (key == N || key == M)// can change this again
 		rotate(key, map);
 	else if (key == C)
 		change_view(map);
@@ -48,7 +47,7 @@ int       key_press(int key, void *param)
 	return (0);
 }
 
-int     mouse_press(int press, int x, int y, void *param)
+int		mouse_press(int press, int x, int y, void *param)
 {
 	t_map *map;
 
@@ -62,9 +61,13 @@ int     mouse_press(int press, int x, int y, void *param)
 	return (0);
 }
 
-int                     mouse_release(int press, int x, int y, void *param)
+/*
+**	Mouse release needed?
+*/
+
+int		mouse_release(int press, int x, int y, void *param)
 {
-	t_map   *map;
+	t_map	*map;
 
 	(void)x;
 	(void)y;
@@ -75,12 +78,12 @@ int                     mouse_release(int press, int x, int y, void *param)
 }
 
 /*
- * ** Handle mouse move
- * */
+** Mouse moving needed?
+*/
 
-int                     mouse_moving(int x, int y, void *param)
+int		mouse_moving(int x, int y, void *param)
 {
-	t_map   *map;
+	t_map	*map;
 
 	map = (t_map *)param;
 	map->mouse.previous_x = map->mouse.x;

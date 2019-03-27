@@ -6,7 +6,7 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:06:42 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/25 14:53:10 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/27 14:04:25 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	draw_horizontal(int *data, int yinc, int xinc, t_map *map)
 	}
 }
 
-int pos_or_neg(int i)
+int		pos_or_neg(int i)
 {
 	if (i > 0)
 		return (1);

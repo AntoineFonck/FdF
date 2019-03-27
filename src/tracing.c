@@ -6,13 +6,14 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 12:14:29 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/27 12:53:36 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/27 14:45:12 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void     rotate_z(int *x, int *y, t_map *map)
+//has to go into other file or be deleted
+void	rotate_z(int *x, int *y, t_map *map)
 {
 	int previous_x;
 	int previous_y;
@@ -23,7 +24,7 @@ void     rotate_z(int *x, int *y, t_map *map)
 	*y = (previous_x - map->start_point.xcenter) * sin(map->gamma) + (previous_y - map->start_point.ycenter) * cos(map->gamma) + map->start_point.ycenter;
 }
 
-void        trace_horizontal(t_map *map, int *data)
+void	trace_horizontal(t_map *map, int *data)
 {
 	int x;
 	int y;
@@ -40,7 +41,6 @@ void        trace_horizontal(t_map *map, int *data)
 		{
 			map->point_one.x = (map->const1 * x - map->const2 * y);
 			map->point_one.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
-			rotate_z(&(map->point_one.x), &(map->point_one.y), map);
 			x += map->offset;
 			map->point_two.x = (map->const1 * x - map->const2 * y);
 			j++;
@@ -57,7 +57,7 @@ void        trace_horizontal(t_map *map, int *data)
 	}
 }
 
-void trace_vertical(t_map *map, int *data)
+void	trace_vertical(t_map *map, int *data)
 {
 	int x;
 	int y;
@@ -70,12 +70,11 @@ void trace_vertical(t_map *map, int *data)
 	{
 		y = map->start_point.y;
 		i = 0;
-		while (i < map->h_max/*x < (map->w_max * offset)*/)
+		while (i < map->h_max)
 		{
 			map->point_one.x = (map->const1 * x - map->const2 * y);
 			map->point_one.y = (-(map->tab[i][j]) * map->change_alt + (map->const1 / 2) * x + (map->const2 / 2) * y);
-			rotate_z(&(map->point_one.x), &(map->point_one.y), map);
-			//fill_pix(data, map->point_one.x, map->point_one.y, 0xFFFFFF);
+			//rotate_z(&(map->point_one.x), &(map->point_one.y), map);
 			y += map->offset;
 			map->point_two.x = (map->const1 * x - map->const2 * y);
 			i++;
@@ -92,7 +91,7 @@ void trace_vertical(t_map *map, int *data)
 	}
 }
 
-void    trace_horizontal_par(t_map *map, int *data)
+void	trace_horizontal_par(t_map *map, int *data)
 {
 	int x;
 	int y;
@@ -115,7 +114,6 @@ void    trace_horizontal_par(t_map *map, int *data)
 			{
 				map->point_two.x = (x + (map->const1 * (-(map->tab[i][j]) * map->change_alt)));
 				map->point_two.y = (y + ((map->const1 / 2) * (-(map->tab[i][j]) * map->change_alt)));
-				//rotate_z(&(map->point_one.x), &(map->point_one.y), map);
 				map->altitude_z = map->tab[i][j];
 				draw_line(map, data);
 			}
@@ -124,7 +122,7 @@ void    trace_horizontal_par(t_map *map, int *data)
 	}
 }
 
-void    trace_vertical_par(t_map *map, int *data)
+void	trace_vertical_par(t_map *map, int *data)
 {
 	int x;
 	int y;
@@ -147,7 +145,6 @@ void    trace_vertical_par(t_map *map, int *data)
 			{
 				map->point_two.x = (x + (map->const1 * (-(map->tab[i][j]) * map->change_alt)));
 				map->point_two.y = (y + ((map->const1 / 2) * (-(map->tab[i][j]) * map->change_alt)));
-				//rotate_z(&(map->point_one.x), &(map->point_one.y), map);
 				map->altitude_z = map->tab[i][j];
 				draw_line(map, data);
 			}
@@ -156,7 +153,7 @@ void    trace_vertical_par(t_map *map, int *data)
 	}
 }
 
-void		trace_par_or_hor(t_map *map)
+void	trace_par_or_hor(t_map *map)
 {
 	if (map->view == 1)
 	{
@@ -172,7 +169,7 @@ void		trace_par_or_hor(t_map *map)
 	}
 }
 
-void        trace_all(t_map *map)
+void	trace_all(t_map *map)
 {
 	if (map->view == 1)
 	{

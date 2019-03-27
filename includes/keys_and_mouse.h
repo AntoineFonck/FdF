@@ -6,7 +6,7 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 15:41:30 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/26 16:24:05 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/27 14:10:51 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define S 1
 # define C 8
 # define W 13
-# define R 15 
+# define R 15
 # define MAIN_PLUS 24
 # define MAIN_MIN 27
 # define N 45
