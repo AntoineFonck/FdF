@@ -6,7 +6,7 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 12:18:34 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/26 13:09:09 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/27 14:16:10 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void	destroy_and_clear(t_map *map)
 	mlx_destroy_image(map->mlx_ptr, map->img.img_ptr);
 	mlx_clear_window(map->mlx_ptr, map->win_ptr);
 	map->img.img_ptr = mlx_new_image(map->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr, &map->img.bpp, &map->img.size_l, &map->img.endian);
+	map->img.data = (int *)mlx_get_data_addr(map->img.img_ptr,
+					&map->img.bpp, &map->img.size_l, &map->img.endian);
 }

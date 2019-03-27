@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/26 18:02:05 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/27 14:07:25 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct		s_img
 	int				bpp;
 	int				endian;
 }					t_img;
+
 /*
    typedef struct	s_mlx
    {
@@ -34,7 +35,8 @@ typedef struct		s_img
    void		*win_ptr;
    t_img		img;
    }				t_mlx;
-   */
+*/
+
 typedef struct		s_screenpoint
 {
 	int				x;
@@ -50,14 +52,14 @@ typedef struct		s_start_point
 	int				ycenter;
 }					t_start_point;
 
-typedef struct                  s_mouse
+typedef struct		s_mouse
 {
 	int				pressed;
 	int				x;
 	int				y;
 	int				previous_x;
 	int				previous_y;
-}								t_mouse;
+}					t_mouse;
 
 typedef struct		s_map
 {
@@ -87,27 +89,27 @@ char				**check_and_read(char *arg, t_map *map);
 
 void				count_nb_lines(char *arg, t_map *map);
 
-int				atoi_tab(char **tabchar, t_map *map);
+int					atoi_tab(char **tabchar, t_map *map);
 
 int					countwords(char *s, char c);
 
 void				draw_line(t_map *map, int *data);
 
-void					altitude(int key, t_map *map);
+void				altitude(int key, t_map *map);
 
-void					zoom(int key, t_map *map);
+void				zoom(int key, t_map *map);
 
-void					move(int key, t_map *map);
+void				move(int key, t_map *map);
 
-void					close_window(t_map *map);
+void				close_window(t_map *map);
 
-void					reset(t_map *map);
+void				reset(t_map *map);
 
-void					change_view(t_map *map);
+void				change_view(t_map *map);
 
 int					all(int key, t_map *map);
 
-void					rotate(int key, t_map *map);
+void				rotate(int key, t_map *map);
 
 void				trace_horizontal(t_map *map, int *data);
 
@@ -127,33 +129,33 @@ void				init_map(t_map *map);
 
 void				keys_and_mouse(t_map *map);
 
-int     key_press(int key, void *param);
+int					key_press(int key, void *param);
 
-int     key_release(int key, void *param);
+int					key_release(int key, void *param);
 
-int     mouse_press(int press, int x, int y, void *param);
+int					mouse_press(int press, int x, int y, void *param);
 
-int     mouse_release(int press, int x, int y, void *param);
+int					mouse_release(int press, int x, int y, void *param);
 
-int     mouse_moving(int x, int y, void *param);
+int					mouse_moving(int x, int y, void *param);
 
-int     expose(t_map *map);
+int					expose(t_map *map);
 
-void    init_map(t_map *map);
+void				init_map(t_map *map);
 
-t_map	*parse(char *argv);
+t_map				*parse(char *argv);
 
-int			check_line(char *line);
+int					check_line(char *line);
 
-int			check_fdf(char *argv);
+int					check_fdf(char *argv);
 
-void		error1(void);
+void				error1(void);
 
-char		**error2(char *line);
+char				**error2(char *line);
 
-int			error3(void);
+int					error3(void);
 
-void		del_tab(char **tab, int len);
+void				del_tab(char **tab, int len);
 
-void		del_int_tab(int **tab, int len);
+void				del_int_tab(int **tab, int len);
 #endif
