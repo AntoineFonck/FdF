@@ -6,25 +6,25 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 15:28:04 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/28 15:22:33 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/28 15:50:58 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	colors(int *data, int x, int y, int z, int color)
+void	colors(int *data, int x, int y, int z, t_map *map)
 {
-	if (z > 8)
+	if (z > 1)
 	{
-		if (color == 1)
+		if (map->color == 1)
 			data[x + y * WIN_WIDTH] = 0x5F021F;
-		else if (color == 2)
+		else if (map->color == 2)
 			data[x + y * WIN_WIDTH] = 0xFD9303;
-		else if (color == 3)
+		else if (map->color == 3)
 			data[x + y * WIN_WIDTH] = 0xA5D610;
-		else if (color == 4)
+		else if (map->color == 4)
 			data[x + y * WIN_WIDTH] = 0x007FFF;
-		else if (color == 5)
+		else if (map->color == 5)
 			data[x + y * WIN_WIDTH] = 0xFF6DE6;
 	}
 	else
@@ -65,6 +65,6 @@ void	fill_pix(int *data, int x, int y, int z, t_map *map)
 		if (map->color == 0)
 			landscape_color(data, x, y, z);
 		else
-			colors(data, x, y, z, map->color);
+			colors(data, x, y, z, map);
 	}
 }
