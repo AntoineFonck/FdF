@@ -12,9 +12,9 @@
 
 #include "fdf.h"
 
-void	colors(int *data, int x, int y, int z, t_map *map)
+void	colors(int *data, int x, int y, t_map *map)
 {
-	if (z > 1)
+	if (map->altitude_z > 1)
 	{
 		if (map->color == 1)
 			data[x + y * WIN_WIDTH] = 0x5F021F;
@@ -65,6 +65,6 @@ void	fill_pix(int *data, int x, int y, int z, t_map *map)
 		if (map->color == 0)
 			landscape_color(data, x, y, z);
 		else
-			colors(data, x, y, z, map);
+			colors(data, x, y, map);
 	}
 }
