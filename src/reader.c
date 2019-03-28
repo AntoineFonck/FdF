@@ -82,11 +82,11 @@ int		atoi_tab(char **tabchar, t_map *map)
 	while (++i < map->h_max)
 	{
 		if (map->w_max != (map->w_max = countwords(tabchar[i], ' ')))
-			return (error_format());
+			return (error_format(map->tab, i));
 		if ((map->tab[i] = (int *)malloc(sizeof(int) * (map->w_max))) == NULL)
-			return (del_int_tab(tab, (i - 1)));
+			return (del_int_tab(map->tab, (i - 1)));
 		if ((tmp = ft_strsplit(tabchar[i], ' ')) == NULL)
-			return (del_int_tab(tab, i));
+			return (del_int_tab(map->tab, i));
 		j = -1;
 		while (++j < map->w_max)
 			map->tab[i][j] = ft_atoi(tmp[j]);

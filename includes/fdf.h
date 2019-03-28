@@ -148,7 +148,7 @@ void				error_count(void);
 
 char				**error_gnl(char *line, char **tab);
 
-int					error_format(void);
+int					error_format(int **tab, int size);
 
 char				**error_open_close(char **tab, int option, int size);
 

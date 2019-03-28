@@ -16,6 +16,7 @@ void	close_window(t_map *map)
 {
 	mlx_destroy_window(map->mlx_ptr, map->win_ptr);
 	del_int_tab(map->tab, map->h_max);
+	ft_memdel((void **)&map);
 	exit(0);
 }
 

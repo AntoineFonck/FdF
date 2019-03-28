@@ -26,9 +26,10 @@ char	**error_gnl(char *line, char **tab)
 	return (NULL);
 }
 
-int		error_format(void)
+int		error_format(int **tab, int size)
 {
 	ft_putstr("problem with map format, aborting...\n");
+	del_int_tab(tab, size);
 	return (-1);
 }
 
@@ -36,7 +37,10 @@ char	**error_open_close(char **tab, int option, int size)
 {
 	ft_putstr("Error while opening or closing the file...\n");
 	if (option == 1)
+	{
 		del_tab(tab, size);
+		return (NULL);
+	}
 	ft_memdel((void **)&tab);
 	return (NULL);
 }

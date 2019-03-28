@@ -34,7 +34,7 @@ int		main(int argc, char **argv)
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	keys_and_mouse(map);
-	//menu(map);
+	menu(map);
 	mlx_loop(map->mlx_ptr);
 	return (0);
 }
