@@ -33,19 +33,19 @@
 /*
 ** MAIN KEYBOARD
 */
-# define A 0 // azur
+# define A 0
 # define S 1
-# define G 5 // green
+# define G 5
 # define C 8
-# define B 11 // bordeaux
+# define B 11
 # define W 13
 # define R 15
 # define Y 16
 # define MAIN_PLUS 24
 # define MAIN_MIN 27
-# define O 31 // orange
-# define P 35 // pink
-# define L 37 // landscape
+# define O 31
+# define P 35
+# define L 37
 # define N 45
 # define M 46
 # define ESC 53

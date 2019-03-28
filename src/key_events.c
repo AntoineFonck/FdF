@@ -50,8 +50,6 @@ void	zoom(int key, t_map *map)
 		map->start_point.y -= map->h_max / 2;
 		map->start_point.xpar -= map->w_max / 2;
 		map->start_point.ypar -= map->h_max / 2;
-		//map->start_point.ycenter -= map->h_max / 2;
-		//map->start_point.xcenter -= map->w_max / 2;
 	}
 	else if ((key == S || key == SCROLL_DOWN) && map->offset > 1)
 	{
@@ -61,8 +59,6 @@ void	zoom(int key, t_map *map)
 		map->start_point.y += map->h_max / 2;
 		map->start_point.ypar += map->h_max / 2;
 		map->start_point.xpar += map->w_max / 2;
-		//map->start_point.ycenter += map->h_max / 2;
-		//map->start_point.xcenter += map->w_max / 2;
 	}
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
@@ -125,21 +121,6 @@ void	change_c(int key, t_map *map)
 		map->color = 4;
 	else if (key == P)
 		map->color = 5;
-	trace_all(map);
-	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
-	menu(map);
-}
-void	rotate(int key, t_map *map)
-{
-	destroy_and_clear(map);
-	if (key == N)
-	{
-		map->gamma += 0.1;
-	}
-	else if (key == M)
-	{
-		map->gamma -= 0.1;
-	}
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	menu(map);
