@@ -131,6 +131,7 @@ t_map	*parse(char *argv)
 	}
 	if ((atoi_tab(tabchar, map)) == -1)
 	{
+		ft_putstr("Problem with parsing, aborting...\n");
 		del_tab(tabchar, map->h_max);
 		ft_memdel((void **)&map);
 		return (NULL);
