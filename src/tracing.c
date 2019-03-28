@@ -95,11 +95,11 @@ void	trace_horizontal_par(t_map *map, int *data)
 	int i;
 	int j;
 
-	y = map->start_point.h;
+	y = map->start_point.ypar;
 	i = -1;
 	while (++i < map->h_max)
 	{
-		x = map->start_point.x - map->w_max / 2;
+		x = map->start_point.xpar/* - map->w_max / 2*/;
 		j = 0;
 		while (j < map->w_max)
 		{
@@ -126,11 +126,11 @@ void	trace_vertical_par(t_map *map, int *data)
 	int i;
 	int j;
 
-	x = map->start_point.x - map->w_max / 2;
+	x = map->start_point.xpar/* - map->w_max / 2*/;
 	j = -1;
 	while (++j < map->w_max)
 	{
-		y = map->start_point.h;
+		y = map->start_point.ypar;
 		i = 0;
 		while (i < map->h_max)
 		{

@@ -48,7 +48,8 @@ void	zoom(int key, t_map *map)
 		map->offset++;
 		map->start_point.x -= map->w_max / 2;
 		map->start_point.y -= map->h_max / 2;
-		map->start_point.h -= map->h_max / 2;
+		map->start_point.xpar -= map->w_max / 2;
+		map->start_point.ypar -= map->h_max / 2;
 		//map->start_point.ycenter -= map->h_max / 2;
 		//map->start_point.xcenter -= map->w_max / 2;
 	}
@@ -58,7 +59,8 @@ void	zoom(int key, t_map *map)
 		map->offset--;
 		map->start_point.x += map->w_max / 2;
 		map->start_point.y += map->h_max / 2;
-		map->start_point.h += map->h_max / 2;
+		map->start_point.ypar += map->h_max / 2;
+		map->start_point.xpar += map->w_max / 2;
 		//map->start_point.ycenter += map->h_max / 2;
 		//map->start_point.xcenter += map->w_max / 2;
 	}
@@ -73,27 +75,33 @@ void	move(int key, t_map *map)
 	if (key == ARROW_UP)
 	{
 		map->start_point.y -= 10;
-		map->start_point.h -= 10;
-		if (map->view == 1)
+		map->start_point.ypar -= 10;
+	//	map->start_point.xpar -= 10;
+	//	if (map->view == 1)
 			map->start_point.x -= 10;
 	}
 	else if (key == ARROW_DOWN)
 	{
 		map->start_point.y += 10;
-		map->start_point.h += 10;
-		if (map->view == 1)
+		map->start_point.ypar += 10;
+	//	map->start_point.xpar += 10;
+	//	if (map->view == 1)
 			map->start_point.x += 10;
 	}
 	else if (key == ARROW_LEFT)
 	{
 		map->start_point.x -= 10;
-		if (map->view == 1)
+		map->start_point.xpar -= 10;
+	//	map->start_point.ypar += 10;
+	//	if (map->view == 1)
 			map->start_point.y += 10;
 	}
 	else if (key == ARROW_RIGHT)
 	{
 		map->start_point.x += 10;
-		if (map->view == 1)
+		map->start_point.xpar += 10;
+	//	map->start_point.ypar -= 10;
+	//	if (map->view == 1)
 			map->start_point.y -= 10;
 	}
 	trace_all(map);

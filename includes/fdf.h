@@ -38,7 +38,8 @@ typedef struct		s_start_point
 {
 	int				x;
 	int				y;
-	int				h;
+	int				xpar;
+	int				ypar;
 	int				xcenter;//used for rotate
 	int				ycenter;//used for rotate
 }					t_start_point;
@@ -58,8 +59,8 @@ typedef struct		s_map
 	void			*win_ptr;
 	t_img			img;
 	int				**tab;
-	int				h_max;
-	int				w_max;
+	double				h_max;
+	double				w_max;
 	int				altitude_z;
 	int				view;
 	int				menu;
