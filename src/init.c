@@ -17,7 +17,7 @@ void	init_map(t_map *map)
 	if (map->w_max * map->h_max < 250)
 	{
 		map->offset = 40;
-		map->change_alt = 2;
+		map->change_alt = 1;
 	}
 	else
 	{

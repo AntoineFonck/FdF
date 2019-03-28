@@ -32,9 +32,19 @@ void	altitude(int key, t_map *map)
 {
 	destroy_and_clear(map);
 	if (key == MAIN_PLUS || key == NUM_PLUS)
-		map->change_alt++;
+	{
+		if (map->w_max * map->h_max < 250)
+			map->change_alt++;
+		else
+			map->change_alt += 0.02;
+	}
 	else if (key == MAIN_MIN || key == NUM_MIN)
-		map->change_alt--;
+	{
+		if (map->w_max * map->h_max < 250)
+                          map->change_alt--;
+                 else
+                          map->change_alt -= 0.02;
+	}
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	menu(map);
