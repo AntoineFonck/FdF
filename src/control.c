@@ -6,7 +6,7 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 16:00:24 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/27 16:16:33 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/28 15:26:36 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int		key_press(int key, void *param)
 	else if (key == MAIN_PLUS || key == NUM_PLUS ||
 			key == MAIN_MIN || key == NUM_MIN)
 		altitude(key, map);
+	else if (key == L || key == B || key == O || key == G || key == A || key == P)
+		change_c(key, map);
 	else if (key == N || key == M)
 		rotate(key, map);
 	else if (key == C)
@@ -51,7 +53,5 @@ int		mouse_press(int press, int x, int y, void *param)
 	map = (t_map *)param;
 	if (press == SCROLL_UP || press == SCROLL_DOWN)
 		zoom(press, map);
-	else if (press == LEFT_CLICK)
-		map->mouse.pressed = 1;
 	return (0);
 }

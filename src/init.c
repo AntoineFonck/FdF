@@ -6,7 +6,7 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 12:18:34 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/27 16:27:57 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/28 14:52:17 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@ void	init_map(t_map *map)
 	if (map->w_max * map->h_max < 250)
 	{
 		map->offset = 40;
-		map->change_alt = 1;
+		map->change_alt = 2;
 	}
 	else
 	{
-		map->offset = 2;
-		map->change_alt = 0.05;
+		map->offset = 1;
+		map->change_alt = 0.02;
 	}
 	map->const1 = 1;
 	map->const2 = 1;
 	map->start_point.xcenter = map->w_max / 2;
-        map->start_point.ycenter = map->h_max / 2;
-	map->start_point.x = 0;
-	//map->start_point.x = WIN_WIDTH / 2;
-	map->start_point.y = 0;
-	map->start_point.xpar = WIN_WIDTH / 2 - (map->w_max / 2 * map->offset) + map->w_max;
+    map->start_point.ycenter = map->h_max / 2;
+	map->start_point.x = WIN_WIDTH / 2 - map->w_max / 2 * map->offset;
+	map->start_point.y = WIN_HEIGHT / 2 - map->start_point.x;
+	map->start_point.xpar = WIN_WIDTH / 2 - (map->w_max / 2 * map->offset);
 	map->start_point.ypar = WIN_HEIGHT / 2 - (map->h_max * map->offset) / 2;
 	map->view = 1;
+	map->color = 0;
 	map->gamma = 0;
 }
 

@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/27 16:03:05 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/28 15:03:50 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,8 @@ typedef struct		s_start_point
 
 typedef struct		s_mouse
 {
-	int				pressed;
 	int				x;
 	int				y;
-	int				previous_x;//used for rotate?
-	int				previous_y;//used for rotate?
 }					t_mouse;
 
 typedef struct		s_map
@@ -59,10 +56,11 @@ typedef struct		s_map
 	void			*win_ptr;
 	t_img			img;
 	int				**tab;
-	double				h_max;
-	double				w_max;
+	double			h_max;
+	double			w_max;
 	int				altitude_z;
 	int				view;
+	int				color;//boolean if map or one color
 	int				menu;
 	int				dx;
 	int				dy;
@@ -109,8 +107,9 @@ void				trace_vertical(t_map *map, int *data);
 
 void				trace_all(t_map *map);
 
-void				fill_pix(int *data, int x, int y, int z);
+void				fill_pix(int *data, int x, int y, int z, t_map *map);
 
+void				change_c(int key, t_map *map);
 /*
 ** KEY EVENTS |||||||||||||||||||||||||
 */

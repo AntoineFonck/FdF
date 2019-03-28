@@ -6,13 +6,32 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 15:28:04 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/27 15:32:34 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/28 15:22:33 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	choose_color(int *data, int x, int y, int z)
+void	colors(int *data, int x, int y, int z, int color)
+{
+	if (z > 8)
+	{
+		if (color == 1)
+			data[x + y * WIN_WIDTH] = 0x5F021F;
+		else if (color == 2)
+			data[x + y * WIN_WIDTH] = 0xFD9303;
+		else if (color == 3)
+			data[x + y * WIN_WIDTH] = 0xA5D610;
+		else if (color == 4)
+			data[x + y * WIN_WIDTH] = 0x007FFF;
+		else if (color == 5)
+			data[x + y * WIN_WIDTH] = 0xFF6DE6;
+	}
+	else
+		data[x + y * WIN_WIDTH] = 0xFFFFFF;
+}
+
+void	landscape_color(int *data, int x, int y, int z)
 {
 	if (z < -8)
 		data[x + y * WIN_WIDTH] = 0x0000C8;
@@ -38,11 +57,14 @@ void	choose_color(int *data, int x, int y, int z)
 		data[x + y * WIN_WIDTH] = 0xD9E7E8;
 }
 
-void	fill_pix(int *data, int x, int y, int z)
+void	fill_pix(int *data, int x, int y, int z, t_map *map)
 {
 	if ((x + y * WIN_WIDTH) < (WIN_WIDTH * WIN_HEIGHT) &&
 			(x + y * WIN_WIDTH) > 0 && x < WIN_WIDTH && x > 0)
 	{
-		choose_color(data, x, y, z);
+		if (map->color == 0)
+			landscape_color(data, x, y, z);
+		else
+			colors(data, x, y, z, map->color);
 	}
 }
