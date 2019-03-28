@@ -40,8 +40,6 @@ typedef struct		s_start_point
 	int				y;
 	int				xpar;
 	int				ypar;
-	int				xcenter;//used for rotate
-	int				ycenter;//used for rotate
 }					t_start_point;
 
 typedef struct		s_mouse
@@ -60,11 +58,10 @@ typedef struct		s_map
 	double			w_max;
 	int				altitude_z;
 	int				view;
-	int				color;//boolean if map or one color
+	int				color;
 	int				menu;
 	int				dx;
 	int				dy;
-	double			gamma;//used for rotate
 	double			offset;
 	double			const1;
 	double			const2;
@@ -125,8 +122,6 @@ void				close_window(t_map *map);
 void				reset(t_map *map);
 
 void				change_view(t_map *map);
-
-void				rotate(int key, t_map *map);//used for rotate
 
 void				menu(t_map *map);
 

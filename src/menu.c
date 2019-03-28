@@ -14,28 +14,28 @@
 
 void	menu(t_map *map)
 {
-	mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 40,
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 30,
 					0xFFFFFF, "Change altitude: + / -");
-	mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 60,
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 50,
 					0xFFFFFF, "Change position: cursors");
-	mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 20,
-					0xFFFFFF, "Change the view (isometric/parallel): c");
-	mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 80,
-					0xFFFFFF, "Zoom: w / s or scrolling");
-	mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 100,
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 10,
+					0xFFFFFF, "Change view (isometric/parallel): C");
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 70,
+					0xFFFFFF, "Zoom: W / S or scrolling");
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 90,
 					0xFFFFFF, "Change colors:");
-	mlx_string_put(map->mlx_ptr, map->win_ptr, 25, 120,
-					0xFFFFFF, "Landscape: L");
-	mlx_string_put(map->mlx_ptr, map->win_ptr, 25, 135,
-					0xFD9303, "Orange: o");
-	mlx_string_put(map->mlx_ptr, map->win_ptr, 25, 150,
-					0xFF6DE6, "Pink: p");
-	mlx_string_put(map->mlx_ptr, map->win_ptr, 25, 165,
-					0x5F021F, "Bordeaux: B");
-	mlx_string_put(map->mlx_ptr, map->win_ptr, 25, 180,
-					0x007FFF, "Azur: A");
-	mlx_string_put(map->mlx_ptr, map->win_ptr, 25, 195,
-					0xA5D610, "Green: G");
-	mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 215,
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 25, 110,
+					0x659C16, "Landscape: L");
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 25, 125,
+					0xFD9303, "Orange:    O");
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 25, 140,
+					0xFF6DE6, "Pink:      P");
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 25, 155,
+					0x5F021F, "Bordeaux:  B");
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 25, 170,
+					0x007FFF, "Azur:      A");
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 25, 185,
+					0xA5D610, "Green:     G");
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 205,
 					0xFFFFFF, "Close the window: 'esc'");
 }

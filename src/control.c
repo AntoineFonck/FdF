@@ -33,8 +33,6 @@ int		key_press(int key, void *param)
 		altitude(key, map);
 	else if (key == L || key == B || key == O || key == G || key == A || key == P)
 		change_c(key, map);
-	else if (key == N || key == M)
-		rotate(key, map);
 	else if (key == C)
 		change_view(map);
 	else if (key == ESC)

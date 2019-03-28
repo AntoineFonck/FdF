@@ -26,15 +26,12 @@ void	init_map(t_map *map)
 	}
 	map->const1 = 1;
 	map->const2 = 1;
-	map->start_point.xcenter = map->w_max / 2;
-    map->start_point.ycenter = map->h_max / 2;
 	map->start_point.x = WIN_WIDTH / 2 - map->w_max / 2 * map->offset;
 	map->start_point.y = WIN_HEIGHT / 2 - map->start_point.x;
 	map->start_point.xpar = WIN_WIDTH / 2 - (map->w_max / 2 * map->offset);
 	map->start_point.ypar = WIN_HEIGHT / 2 - (map->h_max * map->offset) / 2;
 	map->view = 1;
 	map->color = 0;
-	map->gamma = 0;
 }
 
 void	destroy_and_clear(t_map *map)
