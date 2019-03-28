@@ -55,7 +55,7 @@ void	del_tab(char **tab, int len)
 	return ;
 }
 
-void	del_int_tab(int **tab, int len)
+int	del_int_tab(int **tab, int len)
 {
 	int i;
 
@@ -66,5 +66,5 @@ void	del_int_tab(int **tab, int len)
 		i++;
 	}
 	ft_memdel((void **)&tab);
-	return ;
+	return (-1);
 }

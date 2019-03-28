@@ -22,21 +22,21 @@ void	count_nb_lines(char *arg, t_map *map)
 	nblines = 0;
 	map->h_max = 0;
 	if ((fd = open(arg, O_RDONLY)) == -1)
-		return (error1());
+		return (error_count());
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		nblines++;
 		if (check_line(line) == -1)
 		{
 			ft_memdel((void **)&line);
-			return (error1());
+			return (error_count());
 		}
 		ft_memdel((void **)&line);
 	}
 	if (ret == 0)
 		ft_memdel((void **)&line);
 	if ((close(fd)) == -1)
-		return (error1());
+		return (error_count());
 	map->h_max = nblines;
 }
 
@@ -54,17 +54,17 @@ char	**check_and_read(char *arg, t_map *map)
 	if ((tab = (char **)malloc(sizeof(*tab) * (map->h_max))) == NULL)
 		return (NULL);
 	if ((fd = open(arg, O_RDONLY)) == -1)
-		return (NULL);
+		return (error_open_close(tab, 0, map->h_max));
 	while (get_next_line(fd, &line) > 0)
 	{
 		if ((tab[i] = ft_strdup(line)) == NULL)
-			return (error2(line));
+			return (error_gnl(line, tab));
 		ft_memdel((void **)&line);
 		i++;
 	}
 	ft_memdel((void **)&line);
 	if ((close(fd)) == -1)
-		return (NULL);
+		return (error_open_close(tab, 1, map->h_max));
 	return (tab);
 }
 
@@ -82,11 +82,11 @@ int		atoi_tab(char **tabchar, t_map *map)
 	while (++i < map->h_max)
 	{
 		if (map->w_max != (map->w_max = countwords(tabchar[i], ' ')))
-			return (error3());
+			return (error_format());
 		if ((map->tab[i] = (int *)malloc(sizeof(int) * (map->w_max))) == NULL)
-			return (-1);
+			return (del_int_tab(tab, (i - 1)));
 		if ((tmp = ft_strsplit(tabchar[i], ' ')) == NULL)
-			return (-1);
+			return (del_int_tab(tab, i));
 		j = -1;
 		while (++j < map->w_max)
 			map->tab[i][j] = ft_atoi(tmp[j]);

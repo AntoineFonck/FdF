@@ -144,11 +144,13 @@ void				init_map(t_map *map);
 ** ERRORS |||||||||||||||||||||||||||||||||
 */
 
-void				error1(void);
+void				error_count(void);
 
-char				**error2(char *line);
+char				**error_gnl(char *line, char **tab);
 
-int					error3(void);
+int					error_format(void);
+
+char				**error_open_close(char **tab, int option, int size);
 
 /*
 ** FREEING |||||||||||||||||||||||||||||||
@@ -156,5 +158,5 @@ int					error3(void);
 
 void				del_tab(char **tab, int len);
 
-void				del_int_tab(int **tab, int len);
+int				del_int_tab(int **tab, int len);
 #endif

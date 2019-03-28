@@ -12,20 +12,31 @@
 
 #include "fdf.h"
 
-void	error1(void)
+void	error_count(void)
 {
 	ft_putstr("Error while counting number of lines, aborting...\n");
 	return ;
 }
 
-char	**error2(char *line)
+char	**error_gnl(char *line, char **tab)
 {
+	ft_putstr("There was an error while parsing the file...\n");
+	ft_memdel((void **)&tab);
 	ft_memdel((void **)&line);
 	return (NULL);
 }
 
-int		error3(void)
+int		error_format(void)
 {
 	ft_putstr("problem with map format, aborting...\n");
 	return (-1);
+}
+
+char	**error_open_close(char **tab, int option, int size)
+{
+	ft_putstr("Error while opening or closing the file...\n");
+	if (option == 1)
+		del_tab(tab, size);
+	ft_memdel((void **)&tab);
+	return (NULL);
 }
