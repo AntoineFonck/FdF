@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 13:16:29 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/27 15:35:30 by afonck           ###   ########.fr       */
+/*   Updated: 2019/03/29 13:03:16 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,10 @@ t_map	*parse(char *argv)
 	char	**tabchar;
 
 	if ((check_fdf(argv)) == 0)
+	{
+		ft_putstr("input file must end with .fdf\n");
 		return (NULL);
+	}
 	if ((map = (t_map *)malloc(sizeof(t_map))) == NULL)
 		return (NULL);
 	if ((tabchar = check_and_read(argv, map)) == NULL)
