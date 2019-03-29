@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/28 15:03:50 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/29 11:51:07 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,17 @@ int					countwords(char *s, char c);
 ** DRAWING ||||||||||||||||||||||||||||
 */
 
-void				draw_line(t_map *map, int *data);
+void				draw_line(t_map *map);
 
 void				trace_par_or_iso(t_map *map);
 
-void				trace_horizontal(t_map *map, int *data);
+void				trace_horizontal(t_map *map);
 
-void				trace_vertical(t_map *map, int *data);
+void				trace_vertical(t_map *map);
 
 void				trace_all(t_map *map);
 
-void				fill_pix(int *data, int x, int y, int z, t_map *map);
+void				fill_pix(int x, int y, int z, t_map *map);
 
 void				change_c(int key, t_map *map);
 /*
@@ -135,6 +135,7 @@ int					mouse_press(int press, int x, int y, void *param);
 
 void				init_map(t_map *map);
 
+void				set_points(t_map *map, int key);
 /*
 ** ERRORS |||||||||||||||||||||||||||||||||
 */

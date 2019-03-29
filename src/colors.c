@@ -6,7 +6,7 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 15:28:04 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/28 15:50:58 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/29 11:41:08 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ void	landscape_color(int *data, int x, int y, int z)
 		data[x + y * WIN_WIDTH] = 0xD9E7E8;
 }
 
-void	fill_pix(int *data, int x, int y, int z, t_map *map)
+void	fill_pix(int x, int y, int z, t_map *map)
 {
 	if ((x + y * WIN_WIDTH) < (WIN_WIDTH * WIN_HEIGHT) &&
 			(x + y * WIN_WIDTH) > 0 && x < WIN_WIDTH && x > 0)
 	{
 		if (map->color == 0)
-			landscape_color(data, x, y, z);
+			landscape_color(map->img.data, x, y, z);
 		else
-			colors(data, x, y, map);
+			colors(map->img.data, x, y, map);
 	}
 }

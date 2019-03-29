@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 16:20:42 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/27 14:14:12 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/29 11:32:23 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	del_tab(char **tab, int len)
 	return ;
 }
 
-int	del_int_tab(int **tab, int len)
+int		del_int_tab(int **tab, int len)
 {
 	int i;
 
@@ -67,4 +67,32 @@ int	del_int_tab(int **tab, int len)
 	}
 	ft_memdel((void **)&tab);
 	return (-1);
+}
+
+void	set_points(t_map *map, int key)
+{
+	if (key == ARROW_UP)
+	{
+		map->start_point.y -= 10;
+		map->start_point.ypar -= 10;
+		map->start_point.x -= 10;
+	}
+	else if (key == ARROW_DOWN)
+	{
+		map->start_point.y += 10;
+		map->start_point.ypar += 10;
+		map->start_point.x += 10;
+	}
+	else if (key == ARROW_LEFT)
+	{
+		map->start_point.x -= 10;
+		map->start_point.xpar -= 20;
+		map->start_point.y += 10;
+	}
+	else if (key == ARROW_RIGHT)
+	{
+		map->start_point.x += 10;
+		map->start_point.xpar += 20;
+		map->start_point.y -= 10;
+	}
 }
