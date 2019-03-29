@@ -6,7 +6,7 @@
 #    By: afonck <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/27 13:47:31 by afonck            #+#    #+#              #
-#    Updated: 2019/03/27 14:39:32 by afonck           ###   ########.fr        #
+#    Updated: 2019/03/29 11:07:15 by sluetzen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ SOURCES_LIST = colors.c\
 			   main.c\
 			   menu.c\
 			   reader.c\
-			   tracing.c\
+			   tracing_iso.c\
+			   tracing_par.c\
 			   utils.c
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 

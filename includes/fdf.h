@@ -6,7 +6,7 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 15:11:28 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/28 15:03:50 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/29 11:26:18 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct		s_map
 	int				menu;
 	int				dx;
 	int				dy;
+	int				i;
+	int				j;
 	double			offset;
 	double			const1;
 	double			const2;
@@ -101,6 +103,10 @@ void				trace_par_or_iso(t_map *map);
 void				trace_horizontal(t_map *map, int *data);
 
 void				trace_vertical(t_map *map, int *data);
+
+void                trace_horizontal_par(t_map *map, int *data);
+
+void                trace_vertical_par(t_map *map, int *data);
 
 void				trace_all(t_map *map);
 
