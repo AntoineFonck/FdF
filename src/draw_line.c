@@ -6,13 +6,13 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:06:42 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/28 14:34:17 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/29 11:45:37 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	draw_vertical(int *data, int yinc, int xinc, t_map *map)
+void	draw_vertical(int yinc, int xinc, t_map *map)
 {
 	int i;
 	int cumul;
@@ -28,12 +28,12 @@ void	draw_vertical(int *data, int yinc, int xinc, t_map *map)
 			cumul -= map->dy;
 			map->point_one.x += xinc;
 		}
-		fill_pix(data, map->point_one.x, map->point_one.y, map->altitude_z, map);
+		fill_pix(map->point_one.x, map->point_one.y, map->altitude_z, map);
 		i++;
 	}
 }
 
-void	draw_horizontal(int *data, int yinc, int xinc, t_map *map)
+void	draw_horizontal(int yinc, int xinc, t_map *map)
 {
 	int i;
 	int cumul;
@@ -49,7 +49,7 @@ void	draw_horizontal(int *data, int yinc, int xinc, t_map *map)
 			cumul -= map->dx;
 			map->point_one.y += yinc;
 		}
-		fill_pix(data, map->point_one.x, map->point_one.y, map->altitude_z, map);
+		fill_pix(map->point_one.x, map->point_one.y, map->altitude_z, map);
 		i++;
 	}
 }
@@ -62,7 +62,7 @@ int		pos_or_neg(int i)
 		return (-1);
 }
 
-void	draw_line(t_map *map, int *data)
+void	draw_line(t_map *map)
 {
 	int xinc;
 	int yinc;
@@ -73,9 +73,9 @@ void	draw_line(t_map *map, int *data)
 	yinc = pos_or_neg(map->dy);
 	map->dx = ft_absolute(map->dx);
 	map->dy = ft_absolute(map->dy);
-	fill_pix(data, map->point_one.x, map->point_one.y, map->altitude_z, map);
+	fill_pix(map->point_one.x, map->point_one.y, map->altitude_z, map);
 	if (map->dx > map->dy)
-		draw_horizontal(data, yinc, xinc, map);
+		draw_horizontal(yinc, xinc, map);
 	else
-		draw_vertical(data, yinc, xinc, map);
+		draw_vertical(yinc, xinc, map);
 }

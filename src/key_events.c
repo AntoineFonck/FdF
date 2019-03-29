@@ -6,19 +6,11 @@
 /*   By: afonck <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 12:25:02 by afonck            #+#    #+#             */
-/*   Updated: 2019/03/28 15:07:48 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/29 11:52:48 by afonck           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	close_window(t_map *map)
-{
-	mlx_destroy_window(map->mlx_ptr, map->win_ptr);
-	del_int_tab(map->tab, map->h_max);
-	ft_memdel((void **)&map);
-	exit(0);
-}
 
 void	change_view(t_map *map)
 {
@@ -41,9 +33,9 @@ void	altitude(int key, t_map *map)
 	else if (key == MAIN_MIN || key == NUM_MIN)
 	{
 		if (map->w_max * map->h_max < 250)
-                          map->change_alt--;
-                 else
-                          map->change_alt -= 0.02;
+			map->change_alt--;
+		else
+			map->change_alt -= 0.02;
 	}
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
@@ -79,39 +71,7 @@ void	zoom(int key, t_map *map)
 void	move(int key, t_map *map)
 {
 	destroy_and_clear(map);
-	if (key == ARROW_UP)
-	{
-		map->start_point.y -= 10;
-		map->start_point.ypar -= 10;
-		map->start_point.x -= 10;
-	}
-	else if (key == ARROW_DOWN)
-	{
-		map->start_point.y += 10;
-		map->start_point.ypar += 10;
-		map->start_point.x += 10;
-	}
-	else if (key == ARROW_LEFT)
-	{
-		map->start_point.x -= 10;
-		map->start_point.xpar -= 20;
-		map->start_point.y += 10;
-	}
-	else if (key == ARROW_RIGHT)
-	{
-		map->start_point.x += 10;
-		map->start_point.xpar += 20;
-		map->start_point.y -= 10;
-	}
-	trace_all(map);
-	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
-	menu(map);
-}
-
-void	reset(t_map *map)
-{
-	destroy_and_clear(map);
-	init_map(map);
+	set_points(map, key);
 	trace_all(map);
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img.img_ptr, 0, 0);
 	menu(map);

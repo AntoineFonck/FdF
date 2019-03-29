@@ -6,7 +6,7 @@
 /*   By: sluetzen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 11:01:58 by sluetzen          #+#    #+#             */
-/*   Updated: 2019/03/29 11:49:48 by sluetzen         ###   ########.fr       */
+/*   Updated: 2019/03/29 12:10:57 by sluetzen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	point_two(int x, int y, t_map *map)
 	map->altitude_z = map->tab[i][j];
 }
 
-void	trace_horizontal_par(t_map *map, int *data)
+void	trace_horizontal_par(t_map *map)
 {
 	int x;
 	int y;
@@ -48,14 +48,14 @@ void	trace_horizontal_par(t_map *map, int *data)
 			if (map->j < map->w_max)
 			{
 				point_two(x, y, map);
-				draw_line(map, data);
+				draw_line(map);
 			}
 		}
 		y += map->offset;
 	}
 }
 
-void	trace_vertical_par(t_map *map, int *data)
+void	trace_vertical_par(t_map *map)
 {
 	int x;
 	int y;
@@ -77,7 +77,7 @@ void	trace_vertical_par(t_map *map, int *data)
 			if (map->i < map->h_max)
 			{
 				point_two(x, y, map);
-				draw_line(map, data);
+				draw_line(map);
 			}
 		}
 		x += map->offset;
